@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="Current">
+  <ItemGroup>
+    <Compile Update="Categorias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Clientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Colores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ConsultaFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Cotizacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Factura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="IngresoBodega.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="MetodosPago.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="OrdenCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pagos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Ubicaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Usuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Marcas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Presentaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Productos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Proveedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Roles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Reportes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>

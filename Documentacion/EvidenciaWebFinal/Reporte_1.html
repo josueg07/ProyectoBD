@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+
+    <title>
+        Facturaci&#xF3;n y formas de pago - Proyecto BD
+    </title>
+
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <link rel="stylesheet" href="/css/site.css?v=pAGv4ietcJNk_EwsQZ5BN9-K4MuNYS2a9wl4Jw-q9D0" />
+
+    <link rel="stylesheet" href="/ProyectoBD.Web.styles.css?v=b6wR6FqhB81HMdeKJM17AiuSa7T_oE5y48dLxPwPpZs" />
+</head>
+
+<body>
+
+<header b-kpn350b0en>
+
+    <nav b-kpn350b0en class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+        <div b-kpn350b0en class="container-fluid">
+
+            <a class="navbar-brand" href="/">
+
+                Comercializadora de Pinturas de Occidente
+
+            </a>
+
+            <button b-kpn350b0en class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#menuPrincipal">
+
+                <span b-kpn350b0en class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <div b-kpn350b0en class="collapse navbar-collapse"
+                 id="menuPrincipal">
+
+                    <ul b-kpn350b0en class="navbar-nav me-auto">
+
+                        <li b-kpn350b0en class="nav-item">
+                            <a class="nav-link" href="/">
+
+                                Inicio
+
+                            </a>
+                        </li>
+
+
+
+
+
+                            <li b-kpn350b0en class="nav-item dropdown">
+
+                                <a b-kpn350b0en class="nav-link dropdown-toggle"
+                                   href="#"
+                                   role="button"
+                                   data-bs-toggle="dropdown">
+
+                                    Administración
+
+                                </a>
+
+                                <ul b-kpn350b0en class="dropdown-menu">
+
+                                    <li b-kpn350b0en>
+                                        <a class="dropdown-item" href="/Usuarios">
+
+                                            Usuarios
+                                        </a>    
+                                    </li>
+
+                                    <li b-kpn350b0en>
+                                        <a class="dropdown-item" href="/Roles">
+
+                                            Roles
+
+                                        </a>
+                                    </li>
+
+                                </ul>
+
+                            </li>
+                            <li b-kpn350b0en class="nav-item dropdown">
+                                <a b-kpn350b0en class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                    Reportes
+                                </a>
+                                <ul b-kpn350b0en class="dropdown-menu">
+                                    <li b-kpn350b0en><a class="dropdown-item" href="/Reportes">Reportes gerenciales</a></li>
+                                    <li b-kpn350b0en><a class="dropdown-item" href="/Reportes/Consulta">Consulta de factura</a></li>
+                                    <li b-kpn350b0en><a class="dropdown-item" href="/Anulacion">Anulación de factura</a></li>
+                                </ul>
+                            </li>
+
+                    </ul>
+                    <div b-kpn350b0en class="d-flex align-items-center text-white">
+
+                        <div b-kpn350b0en class="me-3 text-end">
+
+                            <div b-kpn350b0en>
+                                Daniela G&#xF3;mez
+                            </div>
+
+                            <small b-kpn350b0en>
+                                Gerente
+                            </small>
+
+                        </div>
+
+
+                        <form method="post" action="/Account/Logout">
+
+                            
+
+                            <button b-kpn350b0en type="submit"
+                                    class="btn btn-outline-light btn-sm">
+
+                                Cerrar sesión
+
+                            </button>
+
+                        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8CdLME1DEUZChB2JCKHgbNDQE681klekgtIUzVtVgTUQbdVTPtQPoGHFiDsGo3c_GGW6tczLKdf0Cgx4nwv20v5HAiYmLz3bTIYqfG9SAMbfKSsc1RzQ5VaYgwnlbp3AYs8Cmze3ufOnoRnbMxXBVjOgxGpjes1TqHp82bWJxUKKqST2846DJ-Rum3nsiD0phg" /></form>
+
+                    </div>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+</header>
+
+
+<div b-kpn350b0en class="container mt-4">
+
+    <main b-kpn350b0en role="main"
+          class="pb-3">
+
+        
+<div class="d-flex flex-wrap justify-content-between align-items-start gap-2 mb-3">
+    <div><h2>Facturaci&#xF3;n y formas de pago</h2><p class="text-muted mb-1">Generado: 18/11/2026 00:54:52</p><p>Desde 18/11/2026 hasta 18/11/2026</p></div>
+    <a class="btn btn-success" href="/Reportes/Pdf?token=72939bf327bb4d3597e74845e7da585b">Generar PDF</a>
+</div>
+ <p class="alert alert-info">Pagos hist&#xF3;ricos de facturas emitidas en el per&#xED;odo. Se excluyen facturas anuladas; los pagos no tienen fecha propia.</p>     <div class="card shadow-sm mb-4"><div class="card-body">
+        <h4>Resumen del per&#xED;odo</h4>
+        <p class="text-muted small">Registros: 1</p>
+        <div class="table-responsive"><table class="table table-striped align-top" style="table-layout:auto">
+            <thead class="table-dark"><tr> <th>Total facturado</th>  <th>Total pagado</th>  <th>Saldo por cobrar</th> </tr></thead>
+            <tbody> <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Q110.00</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Q40.00</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Q70.00</td> </tr> </tbody>
+        </table></div>
+ <p class="fw-bold mb-0">Total facturado: Q110.00 &#xB7; Total pagado: Q40.00 &#xB7; Saldo por cobrar: Q70.00</p>     </div></div>
+    <div class="card shadow-sm mb-4"><div class="card-body">
+        <h4>Pagos por m&#xE9;todo</h4>
+        <p class="text-muted small">Registros: 4</p>
+        <div class="table-responsive"><table class="table table-striped align-top" style="table-layout:auto">
+            <thead class="table-dark"><tr> <th>M&#xE9;todo de pago</th>  <th>Total pagado</th> </tr></thead>
+            <tbody> <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Cheque</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Q10.00</td> </tr>  <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Efectivo</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Q10.00</td> </tr>  <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Tarjeta</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Q20.00</td> </tr>  <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Transferencia (prueba final)</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Q0.00</td> </tr> </tbody>
+        </table></div>
+ <p class="fw-bold mb-0">Total pagado: Q40.00</p>     </div></div>
+<p class="text-muted small">El PDF conserva los datos de esta previsualización durante 20 minutos. Para consultar cambios posteriores, genere nuevamente el reporte.</p>
+
+<a class="btn btn-secondary" href="/Reportes">Volver a reportes</a>
+
+
+    </main>
+
+</div>
+
+
+<footer b-kpn350b0en class="border-top footer text-muted">
+
+    <div b-kpn350b0en class="container">
+
+        &copy; 2026 - Sistema de Ventas e Inventario
+
+    </div>
+
+</footer>
+
+
+<script src="/lib/jquery/dist/jquery.min.js"></script>
+
+<script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="/js/site.js?v=hRQyftXiu1lLX2P9Ly9xa4gHJgLeR1uGN5qegUobtGo"></script>
+
+
+
+</body>
+
+</html>

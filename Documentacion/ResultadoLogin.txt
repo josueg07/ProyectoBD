@@ -1,0 +1,6 @@
+OK: autenticación y apertura del menú WinForms de cajero
+OK: autenticación y apertura del menú WinForms de gerente
+Servidor resuelto: np:\\.\pipe\LOCALDB#FC2643C9\tsql\query
+Base de datos: Proyecto_BD
+SQL Client: C:\Users\josue\source\repos\ProyectoBD2\Verificacion\bin\Debug\net8.0-windows\runtimes\win\lib\net8.0\Microsoft.Data.SqlClient.dll
+Runtime: .NET 8.0.32

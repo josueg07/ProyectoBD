@@ -1,0 +1,7 @@
+@model FacturaWebViewModel
+@{ ViewData["Title"] = "Detalle de cobro"; }
+<h2 class="mb-4">Detalle de factura y cobros</h2>
+<partial name="_MensajesMantenimiento" />
+<partial name="_FacturaDetalle" model="Model" />
+@if (Model.Estado == "Pendiente" && Model.Saldo > 0) { <a asp-action="Cobrar" asp-route-id="@Model.ID_Factura" class="btn btn-primary">Cobrar</a> }
+<a asp-action="Index" class="btn btn-secondary">Volver</a>

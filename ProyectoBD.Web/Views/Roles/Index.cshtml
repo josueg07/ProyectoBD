@@ -1,0 +1,161 @@
+﻿@model IEnumerable<ProyectoBD.Entidades.Rol>
+
+@{
+    ViewData["Title"] = "Roles";
+
+    string[] rolesBase =
+    {
+        "Digitador",
+        "Cajero",
+        "Gerente"
+    };
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+        <h2>Administración de roles</h2>
+
+        <p class="text-muted mb-0">
+            Roles registrados en el sistema.
+        </p>
+    </div>
+
+    <a asp-action="Crear"
+       class="btn btn-primary">
+        Nuevo rol
+    </a>
+
+</div>
+
+
+@if (TempData["Mensaje"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Mensaje"]
+    </div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"]
+    </div>
+}
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">
+        @ViewBag.Error
+    </div>
+}
+
+
+<div class="card shadow-sm">
+
+    <div class="card-body">
+
+        <div class="table-responsive">
+
+            <table class="table table-hover align-middle">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre del rol</th>
+                        <th>Tipo</th>
+                        <th>Acciones</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    @foreach (var rol in Model)
+                    {
+                        bool esBase =
+                            rolesBase.Contains(
+                                rol.NombreRol,
+                                StringComparer.OrdinalIgnoreCase
+                            );
+
+                        <tr>
+
+                            <td>
+                                @rol.ID_Rol
+                            </td>
+
+                            <td>
+                                @rol.NombreRol
+                            </td>
+
+                            <td>
+
+                                @if (esBase)
+                                {
+                                    <span class="badge bg-primary">
+                                        Rol del sistema
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">
+                                        Personalizado
+                                    </span>
+                                }
+
+                            </td>
+
+                            <td>
+
+                                @if (esBase)
+                                {
+                                    <button class="btn btn-sm btn-warning"
+                                            disabled>
+                                        Editar
+                                    </button>
+
+                                    <button class="btn btn-sm btn-danger"
+                                            disabled>
+                                        Eliminar
+                                    </button>
+                                }
+                                else
+                                {
+                                    <a asp-action="Editar"
+                                       asp-route-id="@rol.ID_Rol"
+                                       class="btn btn-sm btn-warning">
+                                        Editar
+                                    </a>
+
+                                    <form asp-action="Eliminar"
+                                          asp-route-id="@rol.ID_Rol"
+                                          method="post"
+                                          class="d-inline"
+                                          onsubmit="return confirm('¿Está seguro de eliminar este rol?');">
+
+                                        @Html.AntiForgeryToken()
+
+                                        <button type="submit"
+                                                class="btn btn-sm btn-danger">
+                                            Eliminar
+                                        </button>
+
+                                    </form>
+                                }
+
+                            </td>
+
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

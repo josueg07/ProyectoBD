@@ -1,0 +1,14 @@
+using System.Data;
+using ProyectoBD.Entidades;
+using static ProyectoBD.Datos.OperacionDatos;
+namespace ProyectoBD.Datos;
+
+public class ProductoDatos
+{
+    public List<Producto> Listar() => Tabla("SELECT ID_Producto,NombreProducto,Descripcion,ID_CategoriaP,ID_Marca FROM dbo.tbl_Producto ORDER BY NombreProducto").AsEnumerable().Select(r => new Producto { ID_Producto = r.Field<int>("ID_Producto"), NombreProducto = r.Field<string>("NombreProducto")!, Descripcion = r.Field<string>("Descripcion")!, ID_CategoriaP = r.Field<int>("ID_CategoriaP"), ID_Marca = r.Field<int>("ID_Marca") }).ToList();
+    public bool Guardar(Producto p, bool nuevo) => Ejecutar(nuevo ? "INSERT dbo.tbl_Producto(NombreProducto,Descripcion,ID_CategoriaP,ID_Marca) VALUES(@n,@d,@c,@m)" : "UPDATE dbo.tbl_Producto SET NombreProducto=@n,Descripcion=@d,ID_CategoriaP=@c,ID_Marca=@m WHERE ID_Producto=@id", Parametro("@id", p.ID_Producto), Parametro("@n", p.NombreProducto), Parametro("@d", p.Descripcion), Parametro("@c", p.ID_CategoriaP), Parametro("@m", p.ID_Marca)) > 0;
+    public bool Eliminar(int id) => Ejecutar("DELETE dbo.tbl_Producto WHERE ID_Producto=@id", Parametro("@id", id)) > 0;
+    public List<ProductoVariante> ListarVariantes(int? producto = null) => Tabla(@"SELECT v.*,CONCAT(p.NombreProducto,' / ',pr.NombrePresentacion,' / ',COALESCE(c.NombreColor,'Sin color')) DescripcionVariante FROM dbo.tbl_ProductoVariante v JOIN dbo.tbl_Producto p ON p.ID_Producto=v.ID_Producto JOIN dbo.tbl_Presentacion pr ON pr.ID_Presentacion=v.ID_Presentacion LEFT JOIN dbo.tbl_Color c ON c.ID_Color=v.ID_Color WHERE (@producto IS NULL OR v.ID_Producto=@producto) ORDER BY p.NombreProducto,v.ID_ProductoV", new Microsoft.Data.SqlClient.SqlParameter("@producto", SqlDbType.Int) { Value = (object?)producto ?? DBNull.Value }).AsEnumerable().Select(r => new ProductoVariante { ID_ProductoV = r.Field<int>("ID_ProductoV"), PrecioVenta = r.Field<decimal>("PrecioVenta"), ID_Producto = r.Field<int>("ID_Producto"), ID_Presentacion = r.Field<int>("ID_Presentacion"), ID_Color = r.Field<int?>("ID_Color"), DescripcionVariante = r.Field<string>("DescripcionVariante")! }).ToList();
+    public bool GuardarVariante(ProductoVariante v, bool nuevo) => Ejecutar(nuevo ? "INSERT dbo.tbl_ProductoVariante(PrecioVenta,ID_Producto,ID_Presentacion,ID_Color) VALUES(@precio,@p,@pr,@c)" : "UPDATE dbo.tbl_ProductoVariante SET PrecioVenta=@precio,ID_Presentacion=@pr,ID_Color=@c WHERE ID_ProductoV=@id AND ID_Producto=@p", Parametro("@id", v.ID_ProductoV), Parametro("@precio", v.PrecioVenta), Parametro("@p", v.ID_Producto), Parametro("@pr", v.ID_Presentacion), new Microsoft.Data.SqlClient.SqlParameter("@c", SqlDbType.Int) { Value = (object?)v.ID_Color ?? DBNull.Value }) > 0;
+    public bool EliminarVariante(int id) => Ejecutar("DELETE dbo.tbl_ProductoVariante WHERE ID_ProductoV=@id", Parametro("@id", id)) > 0;
+}

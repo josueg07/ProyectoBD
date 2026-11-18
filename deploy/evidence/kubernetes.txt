@@ -1,0 +1,19 @@
+NAME                                  READY   STATUS      RESTARTS   AGE
+pod/proyectobd-web-76b578855f-4zzrj   1/1     Running     0          4m42s
+pod/proyectobd-web-76b578855f-zjrzv   1/1     Running     0          4m36s
+pod/sql-init-hds9w                    0/1     Completed   0          12m
+pod/sqlserver-0                       1/1     Running     0          3m4s
+
+NAME                             READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/proyectobd-web   2/2     2            2           6m49s
+
+NAME                     TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
+service/proyectobd-web   ClusterIP   10.105.181.8   <none>        80/TCP     6m48s
+service/sqlserver        ClusterIP   None           <none>        1433/TCP   12m
+
+NAME                                       CLASS   HOSTS              ADDRESS        PORTS     AGE
+ingress.networking.k8s.io/proyectobd-web   nginx   proyectobd.local   192.168.49.2   80, 443   6m48s
+
+NAME                             STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+persistentvolumeclaim/dp-keys    Bound    pvc-42fddb29-47bf-46fe-a2f4-ba3151baa278   100Mi      RWO            standard       <unset>                 13m
+persistentvolumeclaim/sql-data   Bound    pvc-94361636-7c87-4fe7-97a2-b5231a733b6f   8Gi        RWO            standard       <unset>                 13m

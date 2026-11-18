@@ -1,0 +1,11 @@
+  ProyectoBD.Entidades -> C:\Users\josue\source\repos\ProyectoBD2\ProyectoBD.Entidades\bin\Debug\net8.0\ProyectoBD.Entidades.dll
+  ProyectoBD.Datos -> C:\Users\josue\source\repos\ProyectoBD2\ProyectoBD.Datos\bin\Debug\net8.0\ProyectoBD.Datos.dll
+  ProyectoBD.Negocio -> C:\Users\josue\source\repos\ProyectoBD2\ProyectoBD.Negocio\bin\Debug\net8.0\ProyectoBD.Negocio.dll
+  ProyectoBD.Presentacion -> C:\Users\josue\source\repos\ProyectoBD2\ProyectoBD.Presentacion\bin\Debug\net8.0-windows\ProyectoBD.Presentacion.dll
+  ProyectoBD.Web -> C:\Users\josue\source\repos\ProyectoBD2\ProyectoBD.Web\bin\Debug\net8.0\ProyectoBD.Web.dll
+
+Compilación correcta.
+    0 Advertencia(s)
+    0 Errores
+
+Tiempo transcurrido 00:00:01.93

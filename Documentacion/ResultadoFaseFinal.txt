@@ -1,0 +1,36 @@
+FASE FINAL | 2026-11-16T02:35:09
+OK siete reportes actuales: total Q9,375.00; ingresos=9; más vendidos=9; lotes=15; menos vendidos=12; sin stock=0; todas las facturas consultables.
+OK período vacío, ordenamientos y productos sin ventas.
+OK rechazo: fechas invertidas
+OK rechazo: número inválido
+OK rechazo: factura inexistente
+OK rechazo: permiso Digitador
+OK rechazo: permiso Digitador
+OK rechazo: permiso Digitador
+OK rechazo: permiso Digitador
+OK rechazo: permiso Digitador
+OK rechazo: permiso Digitador
+OK rechazo: permiso Digitador
+OK rechazo: permiso Digitador
+OK rechazo: permiso Cajero
+OK rechazo: permiso Cajero
+OK rechazo: permiso Cajero
+OK rechazo: permiso Cajero
+OK rechazo: permiso Cajero
+OK rechazo: permiso Cajero
+OK rechazo: permiso Cajero
+OK rechazo: permiso Cajero
+Caso creado: ID=1044; número=6; Pendiente|40.00|1|1|2|4|0|0
+ANTES: producto=Prueba final 1116023513; lote=FINAL-A-1116023513; disponible=0; vendido=2; cantidad línea=4; precio=Q10.00; subtotal=Q40.00
+ANTES: producto=Prueba final 1116023513; lote=FINAL-B-1116023513; disponible=1; vendido=2; cantidad línea=4; precio=Q10.00; subtotal=Q40.00
+OK rollback por error DESPUÉS de reintegrar lotes, insertar movimientos y actualizar factura: estado, total, stock, pagos, detalles y auditoría intactos; trigger retirado por rollback.
+OK rechazo: permiso SQL Digitador
+OK rechazo: permiso SQL Cajero
+DESPUÉS lote FINAL-A-1116023513: disponible=2
+DESPUÉS lote FINAL-B-1116023513: disponible=3
+OK rechazo: segunda anulación
+OK anulación por número, reintegro 2+2, historial, pagos, responsable, auditoría y segunda anulación bloqueada: Anulada|0.00|5|1|2|4|2|1
+OK siete reportes actuales: total Q9,375.00; ingresos=9; más vendidos=9; lotes=17; menos vendidos=14; sin stock=1; todas las facturas consultables.
+OK período vacío, ordenamientos y productos sin ventas.
+OK WinForms: seis reportes, consulta anulada con pagos/auditoría, botones Volver, selección invalidada al editar, menús por rol; capturas guardadas.
+RESULTADO: TODAS LAS PRUEBAS DE FASE FINAL CORRECTAS. Se conserva el caso de prueba anulado y sus lotes/documentos como historial.

@@ -1,0 +1,23 @@
+@model IEnumerable<CotizacionResumenViewModel>
+@{ ViewData["Title"] = "Cotizaciones"; }
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
+    <div><h2>Cotizaciones</h2><p class="text-muted mb-0">Documentos registrados y su estado actual.</p></div>
+    <a asp-action="Crear" class="btn btn-primary">Crear cotización</a>
+</div>
+<partial name="_MensajesMantenimiento" />
+<div class="card shadow-sm"><div class="card-body"><div class="table-responsive">
+<table class="table table-hover align-middle">
+    <thead class="table-dark"><tr><th>N.º</th><th>Fecha</th><th>Cliente</th><th>Estado</th><th class="text-end">Total</th><th>Acciones</th></tr></thead>
+    <tbody>
+        @if (!Model.Any()) { <tr><td colspan="6" class="text-muted text-center">No hay documentos para mostrar.</td></tr> }
+        @foreach (var registro in Model)
+        {
+            <tr><td>@registro.ID_Cotizacion</td><td>@registro.Fecha.ToString("dd/MM/yyyy")</td><td>@registro.Cliente</td>
+                <td><span class="badge bg-secondary">@registro.Estado</span></td>
+                <td class="text-end">@("Q" + registro.Total.ToString("N2"))</td>
+                <td><a asp-action="Detalle" asp-route-id="@registro.ID_Cotizacion" class="btn btn-sm btn-outline-primary">Ver detalle</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div></div></div>

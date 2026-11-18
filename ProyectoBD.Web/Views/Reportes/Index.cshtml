@@ -1,0 +1,40 @@
+@model ReporteParametrosViewModel
+@using ProyectoBD.Web.Helpers
+@{ ViewData["Title"] = "Reportes gerenciales"; }
+<h2 class="mb-4">Reportes gerenciales</h2>
+<partial name="_MensajesMantenimiento" />
+<div class="card shadow-sm"><div class="card-body">
+<form asp-action="Generar" method="post">
+    @Html.AntiForgeryToken()
+    <div asp-validation-summary="All" class="text-danger mb-3" role="alert"></div>
+    <div class="mb-3"><label asp-for="Tipo" class="form-label">Reporte</label><select asp-for="Tipo" class="form-select">
+        @for (int i = 1; i <= 7; i++) { <option value="@i">@i. @ReporteWeb.Titulos[i]</option> }
+    </select></div>
+    <div class="row mb-3" id="parametrosFechas"><div class="col-md-6"><label asp-for="Inicial" class="form-label">Fecha inicial</label><input asp-for="Inicial" class="form-control" type="date" /></div>
+    <div class="col-md-6"><label asp-for="Final" class="form-label">Fecha final</label><input asp-for="Final" class="form-control" type="date" /></div></div>
+    <p class="text-muted d-none" id="mensajeSituacionActual" hidden>Este reporte muestra la situación actual y no utiliza un rango de fechas.</p>
+    <div class="mb-3 d-none" id="parametroFactura" hidden><label asp-for="NumeroFactura" class="form-label">Número de factura</label><input asp-for="NumeroFactura" class="form-control" type="number" min="1" step="1" /></div>
+    <button class="btn btn-primary" type="submit">Generar previsualización</button>
+</form></div></div>
+@section Scripts {
+    <script>
+        (() => {
+            const reporte = document.getElementById('Tipo');
+            const fechas = document.getElementById('parametrosFechas');
+            const factura = document.getElementById('parametroFactura');
+            const mensaje = document.getElementById('mensajeSituacionActual');
+            const actualizarParametros = () => {
+                const tipo = Number(reporte.value);
+                const usaFechas = [1, 2, 3, 5].includes(tipo);
+                fechas.hidden = !usaFechas;
+                factura.hidden = tipo !== 7;
+                mensaje.hidden = tipo !== 4 && tipo !== 6;
+                fechas.classList.toggle('d-none', !usaFechas);
+                factura.classList.toggle('d-none', tipo !== 7);
+                mensaje.classList.toggle('d-none', tipo !== 4 && tipo !== 6);
+            };
+            reporte.addEventListener('change', actualizarParametros);
+            actualizarParametros();
+        })();
+    </script>
+}

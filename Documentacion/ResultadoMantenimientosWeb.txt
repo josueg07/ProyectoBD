@@ -1,0 +1,23 @@
+PRUEBAS WEB | 2026-11-17T22:47:41
+OK listado, formularios, permisos GET/POST, antiforgery y eliminación sólo POST: Clientes
+OK listado, formularios, permisos GET/POST, antiforgery y eliminación sólo POST: Proveedores
+OK listado, formularios, permisos GET/POST, antiforgery y eliminación sólo POST: Marcas
+OK listado, formularios, permisos GET/POST, antiforgery y eliminación sólo POST: Categorias
+OK listado, formularios, permisos GET/POST, antiforgery y eliminación sólo POST: Presentaciones
+OK listado, formularios, permisos GET/POST, antiforgery y eliminación sólo POST: Colores
+OK listado, formularios, permisos GET/POST, antiforgery y eliminación sólo POST: Productos
+OK listado, formularios, permisos GET/POST, antiforgery y eliminación sólo POST: Variantes
+OK menú por rol, Usuarios/Roles existentes y acceso denegado.
+OK validaciones obligatorias, longitudes y FK de los ocho módulos; catálogos recargados.
+OK FK protegida y mensaje entendible: Productos
+OK FK protegida y mensaje entendible: Marcas
+OK FK protegida y mensaje entendible: Categorias
+OK FK protegida y mensaje entendible: Presentaciones
+OK FK protegida y mensaje entendible: Colores
+OK FK protegida y mensaje entendible: Clientes
+OK FK protegida y mensaje entendible: Proveedores
+OK FK protegida y mensaje entendible: Variantes
+OK crear y editar los ocho módulos; variantes con/sin color, precio, filtro, nombres de FK y conservación de producto.
+OK eliminación por POST de los ocho registros temporales.
+RESULTADO: mantenimiento Web verificado por HTTP contra SQL Server, sin cambios de esquema ni procedimientos.
+OK limpieza limitada a los registros propios de esta ejecución: wvda99d253c6

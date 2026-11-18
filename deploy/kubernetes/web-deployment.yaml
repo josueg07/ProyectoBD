@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: proyectobd-web
+  namespace: proyectobd
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: {maxUnavailable: 0, maxSurge: 1}
+  selector:
+    matchLabels: {app: proyectobd-web}
+  template:
+    metadata:
+      labels: {app: proyectobd-web}
+    spec:
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1654
+        fsGroup: 1654
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchLabels: {app: proyectobd-web}
+              topologyKey: kubernetes.io/hostname
+      containers:
+        - name: web
+          image: REGISTRY_USUARIO/proyectobd-web:latest
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef: {name: web-config}
+            - secretRef: {name: web-secret}
+          ports: [{name: http, containerPort: 8080}]
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities: {drop: [ALL]}
+          volumeMounts:
+            - {name: keys, mountPath: /var/dpkeys}
+            - {name: certificate, mountPath: /run/secrets, readOnly: true}
+          resources:
+            requests: {cpu: 100m, memory: 128Mi}
+            limits: {cpu: "1", memory: 512Mi}
+          readinessProbe:
+            httpGet: {path: /health, port: http}
+            periodSeconds: 5
+          livenessProbe:
+            httpGet: {path: /health, port: http}
+            periodSeconds: 15
+          startupProbe:
+            httpGet: {path: /health, port: http}
+            failureThreshold: 30
+            periodSeconds: 5
+      volumes:
+        - name: keys
+          persistentVolumeClaim: {claimName: dp-keys}
+        - name: certificate
+          secret: {secretName: dp-certificate}

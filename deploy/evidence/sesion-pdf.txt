@@ -1,0 +1,3 @@
+Login y cookie comprobados contra SQL del despliegue.
+PDF Linux descargado: 40128 bytes.
+La segunda réplica aceptó la misma cookie.

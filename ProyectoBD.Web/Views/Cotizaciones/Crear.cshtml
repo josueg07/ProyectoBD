@@ -1,0 +1,52 @@
+@model CotizacionCrearViewModel
+@{ ViewData["Title"] = "Crear cotización"; }
+<h2 class="mb-4">@ViewData["Title"]</h2>
+<div class="card shadow-sm"><div class="card-body">
+    <form asp-action="Crear" method="post" data-detalle-proceso>
+        @Html.AntiForgeryToken()
+        <button type="submit" name="accion" value="guardar" class="visually-hidden" tabindex="-1" aria-hidden="true">Guardar</button>
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
+        <div class="mb-4 col-lg-6">
+            <label asp-for="ID_Cliente" class="form-label"></label>
+            <select asp-for="ID_Cliente" asp-items="Model.Clientes" class="form-select"><option value="">Seleccione un cliente</option></select>
+            <span asp-validation-for="ID_Cliente" class="text-danger"></span>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-2"><h4 class="mb-0">Detalle</h4><button type="submit" name="accion" value="agregar" formnovalidate class="btn btn-outline-primary">Agregar línea</button></div>
+        <p class="text-muted">Seleccione variantes sin repetirlas e ingrese cantidades enteras positivas. El precio sugerido puede ajustarse.</p>
+        <div class="table-responsive">
+            <table class="table align-middle">
+                <thead class="table-dark"><tr><th>Producto / presentación / color</th><th>Cantidad</th><th>Precio unitario Q</th><th class="text-end">Subtotal</th><th></th></tr></thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Detalle.Count; i++)
+                    {
+                        <tr data-linea>
+                            <td style="min-width:260px">
+                                <select asp-for="Detalle[i].ID_ProductoV" class="form-select" data-variante>
+                                    <option value="">Seleccione una variante</option>
+                                    @foreach (var variante in Model.Variantes)
+                                    {
+                                        <option value="@variante.ID_ProductoV" data-precio="@variante.PrecioVenta.ToString(System.Globalization.CultureInfo.InvariantCulture)">@variante.DescripcionVariante</option>
+                                    }
+                                </select>
+                                <span asp-validation-for="Detalle[i].ID_ProductoV" class="text-danger"></span>
+                            </td>
+                            <td style="min-width:120px"><input asp-for="Detalle[i].Cantidad" class="form-control" type="number" min="1" step="1" data-cantidad /><span asp-validation-for="Detalle[i].Cantidad" class="text-danger"></span></td>
+                            <td style="min-width:140px"><input asp-for="Detalle[i].PrecioUnitario" class="form-control" type="number" min="0.01" max="9999999999.99" step="0.01" data-precio /><span asp-validation-for="Detalle[i].PrecioUnitario" class="text-danger"></span></td>
+                            <td class="text-end text-nowrap" data-subtotal>@("Q" + Model.Detalle[i].Subtotal.ToString("N2"))</td>
+                            <td><button type="submit" name="accion" value="quitar:@i" formnovalidate class="btn btn-sm btn-outline-danger">Quitar</button></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <p class="fs-5 text-end fw-bold">Total: <span data-total>@("Q" + Model.Total.ToString("N2"))</span></p>
+        <div class="d-flex gap-2 mt-3">
+            <button type="submit" name="accion" value="guardar" class="btn btn-primary">Guardar cotización</button>
+            <a asp-action="Index" class="btn btn-secondary">Volver al listado</a>
+        </div>
+    </form>
+</div></div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/detalle-proceso.js" asp-append-version="true"></script>
+}

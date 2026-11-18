@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+
+    <title>
+        Inventario actual - Proyecto BD
+    </title>
+
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <link rel="stylesheet" href="/css/site.css?v=pAGv4ietcJNk_EwsQZ5BN9-K4MuNYS2a9wl4Jw-q9D0" />
+
+    <link rel="stylesheet" href="/ProyectoBD.Web.styles.css?v=b6wR6FqhB81HMdeKJM17AiuSa7T_oE5y48dLxPwPpZs" />
+</head>
+
+<body>
+
+<header b-kpn350b0en>
+
+    <nav b-kpn350b0en class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+        <div b-kpn350b0en class="container-fluid">
+
+            <a class="navbar-brand" href="/">
+
+                Comercializadora de Pinturas de Occidente
+
+            </a>
+
+            <button b-kpn350b0en class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#menuPrincipal">
+
+                <span b-kpn350b0en class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <div b-kpn350b0en class="collapse navbar-collapse"
+                 id="menuPrincipal">
+
+                    <ul b-kpn350b0en class="navbar-nav me-auto">
+
+                        <li b-kpn350b0en class="nav-item">
+                            <a class="nav-link" href="/">
+
+                                Inicio
+
+                            </a>
+                        </li>
+
+
+
+
+
+                            <li b-kpn350b0en class="nav-item dropdown">
+
+                                <a b-kpn350b0en class="nav-link dropdown-toggle"
+                                   href="#"
+                                   role="button"
+                                   data-bs-toggle="dropdown">
+
+                                    Administración
+
+                                </a>
+
+                                <ul b-kpn350b0en class="dropdown-menu">
+
+                                    <li b-kpn350b0en>
+                                        <a class="dropdown-item" href="/Usuarios">
+
+                                            Usuarios
+                                        </a>    
+                                    </li>
+
+                                    <li b-kpn350b0en>
+                                        <a class="dropdown-item" href="/Roles">
+
+                                            Roles
+
+                                        </a>
+                                    </li>
+
+                                </ul>
+
+                            </li>
+                            <li b-kpn350b0en class="nav-item dropdown">
+                                <a b-kpn350b0en class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                    Reportes
+                                </a>
+                                <ul b-kpn350b0en class="dropdown-menu">
+                                    <li b-kpn350b0en><a class="dropdown-item" href="/Reportes">Reportes gerenciales</a></li>
+                                    <li b-kpn350b0en><a class="dropdown-item" href="/Reportes/Consulta">Consulta de factura</a></li>
+                                    <li b-kpn350b0en><a class="dropdown-item" href="/Anulacion">Anulación de factura</a></li>
+                                </ul>
+                            </li>
+
+                    </ul>
+                    <div b-kpn350b0en class="d-flex align-items-center text-white">
+
+                        <div b-kpn350b0en class="me-3 text-end">
+
+                            <div b-kpn350b0en>
+                                Daniela G&#xF3;mez
+                            </div>
+
+                            <small b-kpn350b0en>
+                                Gerente
+                            </small>
+
+                        </div>
+
+
+                        <form method="post" action="/Account/Logout">
+
+                            
+
+                            <button b-kpn350b0en type="submit"
+                                    class="btn btn-outline-light btn-sm">
+
+                                Cerrar sesión
+
+                            </button>
+
+                        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8CdLME1DEUZChB2JCKHgbNDSm2D7IbnaoI093I5x2P52nZaEYIBBfT9sV7IweLe5G2iAh-6sIvJnSnjZxPmvQK8Mtmi_QuuNNVwTUxixdQ1_9ddLsZ_0KP_p1XkPXbO7PXNlzSn2jKBKe8O-Iq-MzkV7ZMXfdxsmzy-5P2g9AsGdm0J2DfNFEWhhdJ6IUH3MxA" /></form>
+
+                    </div>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+</header>
+
+
+<div b-kpn350b0en class="container mt-4">
+
+    <main b-kpn350b0en role="main"
+          class="pb-3">
+
+        
+<div class="d-flex flex-wrap justify-content-between align-items-start gap-2 mb-3">
+    <div><h2>Inventario actual</h2><p class="text-muted mb-1">Generado: 18/11/2026 00:54:53</p><p>Existencias al momento de generar</p></div>
+    <a class="btn btn-success" href="/Reportes/Pdf?token=231fef506ce54ef3b1aea4683df93911">Generar PDF</a>
+</div>
+    <div class="card shadow-sm mb-4"><div class="card-body">
+        <h4>Lotes disponibles</h4>
+        <p class="text-muted small">Registros: 19</p>
+        <div class="table-responsive"><table class="table table-striped align-top" style="table-layout:auto">
+            <thead class="table-dark"><tr> <th>Producto</th>  <th>Presentaci&#xF3;n</th>  <th>Color</th>  <th>Lote</th>  <th>Ubicaci&#xF3;n</th>  <th>Fecha de ingreso</th>  <th>Disponible</th> </tr></thead>
+            <tbody> <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Brocha profesional</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Unidad</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Sin color</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Lote 47</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Bodega principal</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">05/10/2026 23:59</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">86</td> </tr>  <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Brocha profesional</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Unidad</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Sin color</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Lote 55</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Estante de exhibici&#xF3;n</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">18/10/2026 23:59</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">75</td> </tr>  <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Cable el&#xE9;ctrico THHN</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Unidad</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Negro</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Lote 51</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Bodega principal</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">05/10/2026 23:59</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">500</td> </tr>  <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Cable el&#xE9;ctrico THHN</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Unidad</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Rojo</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Lote 50</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Bodega principal</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">05/10/2026 23:59</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">480</td> </tr>  <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Esmalte anticorrosivo</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Gal&#xF3;n</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Negro</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Lote 45</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Bodega principal</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">05/10/2026 23:59</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">27</td> </tr>  <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Esmalte anticorrosivo</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Gal&#xF3;n</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Rojo</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Lote 46</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Bodega principal</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">05/10/2026 23:59</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">18</td> </tr>  <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Pintura l&#xE1;tex interior</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Cubeta</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Blanco</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Lote 44</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Bodega principal</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">05/10/2026 23:59</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">15</td> </tr>  <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Pintura l&#xE1;tex interior</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Gal&#xF3;n</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Azul</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">PINT-AZUL-01</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Bodega principal</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">05/10/2026 23:59</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">25</td> </tr>  <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Pintura l&#xE1;tex interior</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Gal&#xF3;n</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Azul</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">PINT-AZUL-02</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Bodega principal</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">15/10/2026 23:59</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">35</td> </tr>  <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Pintura l&#xE1;tex interior</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Gal&#xF3;n</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Blanco</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Lote 41</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Bodega principal</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">01/10/2026 23:59</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">50</td> </tr>  <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Pintura l&#xE1;tex interior</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Gal&#xF3;n</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Blanco</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">PINT-BLANCO-02</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Bodega principal</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">11/10/2026 23:59</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">40</td> </tr>  <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Prueba final 1116023513</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Gal&#xF3;n</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Sin color</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">FINAL-A-1116023513</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Bodega principal</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">14/11/2026 02:35</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">2</td> </tr>  <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Prueba final 1116023513</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Gal&#xF3;n</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Sin color</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">FINAL-B-1116023513</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Bodega principal</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">15/11/2026 02:35</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">3</td> </tr>  <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">PRUEBAWEBFINAL_3ed27a producto</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Gal&#xF3;n</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Sin color</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">PRUEBAWEBFINAL_3ed27a_RECIENTE</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">wv13d2c0b2f8 ubicacion</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">17/11/2026 00:54</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">1</td> </tr>  <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Rodillo para pintar</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Unidad</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Sin color</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Lote 48</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Bodega principal</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">05/10/2026 23:59</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">75</td> </tr>  <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Rodillo para pintar</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Unidad</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Sin color</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Lote 56</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Estante de exhibici&#xF3;n</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">18/10/2026 23:59</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">20</td> </tr>  <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Tomacorriente doble</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Unidad</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Blanco</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Lote 52</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Bodega principal</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">05/10/2026 23:59</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">96</td> </tr>  <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Tornillo para madera</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Caja</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Sin color</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Lote 49</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Bodega principal</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">05/10/2026 23:59</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">194</td> </tr>  <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Tubo PVC de media pulgada</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Unidad</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Sin color</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Lote 53</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Bodega principal</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">05/10/2026 23:59</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">57</td> </tr> </tbody>
+        </table></div>
+ <p class="fw-bold mb-0">Disponible: 1,799</p>     </div></div>
+<p class="text-muted small">El PDF conserva los datos de esta previsualización durante 20 minutos. Para consultar cambios posteriores, genere nuevamente el reporte.</p>
+
+<a class="btn btn-secondary" href="/Reportes">Volver a reportes</a>
+
+
+    </main>
+
+</div>
+
+
+<footer b-kpn350b0en class="border-top footer text-muted">
+
+    <div b-kpn350b0en class="container">
+
+        &copy; 2026 - Sistema de Ventas e Inventario
+
+    </div>
+
+</footer>
+
+
+<script src="/lib/jquery/dist/jquery.min.js"></script>
+
+<script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="/js/site.js?v=hRQyftXiu1lLX2P9Ly9xa4gHJgLeR1uGN5qegUobtGo"></script>
+
+
+
+</body>
+
+</html>

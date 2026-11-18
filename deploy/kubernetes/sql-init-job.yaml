@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: sql-init
+  namespace: proyectobd
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: init
+          image: mcr.microsoft.com/mssql/server:2022-latest
+          command: [bash, /init/init-sql.sh]
+          env:
+            - name: SQLCMDPASSWORD
+              valueFrom:
+                secretKeyRef: {name: sql-secret, key: MSSQL_SA_PASSWORD}
+          volumeMounts: [{name: scripts, mountPath: /init, readOnly: true}]
+      volumes:
+        - name: scripts
+          configMap: {name: sql-init-files}

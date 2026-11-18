@@ -1,0 +1,7 @@
+@model FacturaWebViewModel
+@{ ViewData["Title"] = "Detalle de factura"; }
+<h2 class="mb-4">Detalle de factura</h2>
+<partial name="_MensajesMantenimiento" />
+<partial name="_FacturaDetalle" model="Model" />
+<p class="text-muted">El Cajero puede registrar el pago de esta factura desde Caja → Cobros.</p>
+<a asp-action="Index" class="btn btn-secondary">Volver</a>

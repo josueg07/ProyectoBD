@@ -1,0 +1,4 @@
+NAME                           IMAGE                                        COMMAND                  SERVICE     CREATED         STATUS                     PORTS
+proyectobd-redes-sql-init-1    mcr.microsoft.com/mssql/server:2022-latest   "bash /init/init-sql…"   sql-init    9 minutes ago   Exited (0) 8 minutes ago   
+proyectobd-redes-sqlserver-1   mcr.microsoft.com/mssql/server:2022-latest   "/opt/mssql/bin/laun…"   sqlserver   9 minutes ago   Up 9 minutes (healthy)     1433/tcp
+proyectobd-redes-web-1         proyectobd-web:latest                        "dotnet ProyectoBD.W…"   web         9 minutes ago   Up 8 minutes (healthy)     0.0.0.0:8085->8080/tcp, [::]:8085->8080/tcp

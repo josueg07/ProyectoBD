@@ -1,0 +1,9 @@
+@model List<FacturaWebViewModel>
+@{ ViewData["Title"] = "Cobros"; }
+<h2 class="mb-4">Facturas pendientes de cobro</h2>
+<partial name="_MensajesMantenimiento" />
+<div class="table-responsive"><table class="table table-hover">
+    <thead class="table-dark"><tr><th>N.º factura</th><th>Cliente</th><th>Estado</th><th>Total</th><th>Pagado</th><th>Saldo</th><th></th></tr></thead>
+    <tbody>@if (Model.Count == 0) { <tr><td colspan="7">No hay facturas pendientes de cobro.</td></tr> }
+    @foreach (var f in Model) { <tr><td>@f.NumeroFactura</td><td>@f.Cliente</td><td>@f.Estado</td><td>@("Q" + f.Total.ToString("N2"))</td><td>@("Q" + f.Pagado.ToString("N2"))</td><td>@("Q" + f.Saldo.ToString("N2"))</td><td class="text-nowrap"><a asp-action="Cobrar" asp-route-id="@f.ID_Factura" class="btn btn-primary btn-sm">Cobrar</a> <a asp-action="Detalle" asp-route-id="@f.ID_Factura" class="btn btn-outline-secondary btn-sm">Detalle</a></td></tr> }</tbody>
+</table></div>

@@ -1,0 +1,9 @@
+Verificación en navegador real del JavaScript detalle-proceso.js usando un formulario local aislado.
+Producto A (ID 101), cantidad 2, precio sugerido 10.50: Q21.00.
+Cambio de cantidad a 3: Q31.50.
+Producto B (ID 202), precio sugerido 20.00: Q60.00.
+Precio editado a 15.75, cantidad 3: Q47.25.
+Valores de las opciones conservados: 101 y 202.
+Recibir todo: cantidad 5; costo obligatorio y mínimo 0.01.
+Cantidad recibida cero: costo opcional y mínimo cero.
+Resultado: todas las comprobaciones correctas.

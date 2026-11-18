@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: sqlserver
+  namespace: proyectobd
+spec:
+  serviceName: sqlserver
+  replicas: 1
+  selector:
+    matchLabels: {app: sqlserver}
+  template:
+    metadata:
+      labels: {app: sqlserver}
+    spec:
+      securityContext:
+        fsGroup: 10001
+      containers:
+        - name: sqlserver
+          image: mcr.microsoft.com/mssql/server:2022-latest
+          env:
+            - {name: ACCEPT_EULA, value: "Y"}
+            - {name: MSSQL_PID, value: Developer}
+            - name: MSSQL_SA_PASSWORD
+              valueFrom:
+                secretKeyRef: {name: sql-secret, key: MSSQL_SA_PASSWORD}
+          ports: [{containerPort: 1433}]
+          volumeMounts: [{name: data, mountPath: /var/opt/mssql}]
+          resources:
+            requests: {cpu: 250m, memory: 2Gi}
+            limits: {cpu: "2", memory: 3Gi}
+          readinessProbe:
+            tcpSocket: {port: 1433}
+            initialDelaySeconds: 20
+            periodSeconds: 10
+          startupProbe:
+            tcpSocket: {port: 1433}
+            failureThreshold: 60
+            periodSeconds: 5
+      volumes:
+        - name: data
+          persistentVolumeClaim: {claimName: sql-data}

@@ -1,0 +1,51 @@
+@model IngresoBodegaCrearViewModel
+@{ ViewData["Title"] = "Registrar ingreso a bodega"; }
+<h2 class="mb-4">@ViewData["Title"]</h2>
+<div asp-validation-summary="All" class="text-danger mb-3" role="alert"></div>
+<div class="card shadow-sm mb-4"><div class="card-body">
+    <form asp-action="Crear" method="get" class="row g-2 align-items-end">
+        <div class="col-lg-8"><label for="orden" class="form-label">Orden de compra pendiente o parcial</label><select name="orden" id="orden" asp-items="Model.Ordenes" class="form-select"><option value="">Seleccione una orden</option></select></div>
+        <div class="col-auto"><button type="submit" class="btn btn-outline-primary">Consultar pendientes</button></div>
+    </form>
+</div></div>
+@if (Model.Estado == "Completa")
+{
+    <div class="alert alert-info">Esta orden ya está completa y no admite más ingresos.</div>
+}
+@if (Model.Estado == "Pendiente" || Model.Estado == "Parcial")
+{
+    <div class="card shadow-sm"><div class="card-body">
+    <h4>Orden @Model.ID_OrdenC · @Model.Proveedor</h4><p>Estado: <strong>@Model.Estado</strong></p>
+    <form asp-action="Crear" method="post" data-recepcion>
+        @Html.AntiForgeryToken()
+        <input type="hidden" asp-for="ID_OrdenC" />
+        <div class="row g-3 mb-4">
+            <div class="col-md-6"><label asp-for="ID_UbicacionA" class="form-label"></label><select asp-for="ID_UbicacionA" asp-items="Model.Ubicaciones" class="form-select"><option value="">Seleccione una ubicación</option></select><span asp-validation-for="ID_UbicacionA" class="text-danger"></span></div>
+            <div class="col-md-6"><label asp-for="FechaIngreso" class="form-label"></label><input asp-for="FechaIngreso" asp-format="{0:yyyy-MM-ddTHH:mm:ss}" type="datetime-local" step="1" max="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss")" class="form-control" /><span asp-validation-for="FechaIngreso" class="text-danger"></span></div>
+        </div>
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2"><h4 class="mb-0">Pendientes actuales</h4><button type="button" class="btn btn-outline-primary" data-recibir-todo>Recibir todo lo pendiente</button></div>
+        <p class="text-muted">Deje en 0 las líneas que no recibe. Complete el costo de cada línea a recibir; el número de lote es opcional.</p>
+        <div class="table-responsive"><table class="table align-middle">
+            <thead class="table-dark"><tr><th>Producto / presentación / color</th><th>Solicitada</th><th>Recibida</th><th>Pendiente</th><th>A recibir</th><th>Costo unitario Q</th><th>Lote opcional</th></tr></thead>
+            <tbody>
+                @for (int i = 0; i < Model.Detalle.Count; i++)
+                {
+                    <tr data-recepcion-linea>
+                        <td style="min-width:220px">@Model.Detalle[i].Producto<input type="hidden" asp-for="Detalle[i].ID_DetalleOC" /></td>
+                        <td>@Model.Detalle[i].Solicitada</td><td>@Model.Detalle[i].RecibidaAnterior</td><td class="fw-bold">@Model.Detalle[i].Pendiente</td>
+                        <td style="min-width:110px"><input asp-for="Detalle[i].CantidadRecibida" type="number" min="0" max="@Model.Detalle[i].Pendiente" step="1" class="form-control" data-recibir data-pendiente="@Model.Detalle[i].Pendiente" /><span asp-validation-for="Detalle[i].CantidadRecibida" class="text-danger"></span></td>
+                        <td style="min-width:140px"><input asp-for="Detalle[i].CostoUnitario" type="number" min="0" max="9999999999.99" step="0.01" class="form-control" data-costo /><span asp-validation-for="Detalle[i].CostoUnitario" class="text-danger"></span></td>
+                        <td style="min-width:160px"><input asp-for="Detalle[i].NumeroLote" maxlength="50" class="form-control" /><span asp-validation-for="Detalle[i].NumeroLote" class="text-danger"></span></td>
+                    </tr>
+                }
+            </tbody>
+        </table></div>
+        <div class="d-flex gap-2 mt-3"><button type="submit" class="btn btn-primary">Registrar ingreso</button><a asp-controller="OrdenesCompra" asp-action="Detalle" asp-route-id="@Model.ID_OrdenC" class="btn btn-secondary">Volver a la orden</a></div>
+    </form>
+    </div></div>
+}
+<div class="mt-3"><a asp-action="Index">Ver ingresos registrados</a></div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/detalle-proceso.js" asp-append-version="true"></script>
+}

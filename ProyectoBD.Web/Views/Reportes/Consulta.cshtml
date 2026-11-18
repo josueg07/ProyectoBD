@@ -1,0 +1,27 @@
+@model ConsultaFacturaViewModel
+@{ ViewData["Title"] = Model.Anulacion ? "Anulación de factura" : "Consulta de factura"; }
+<h2 class="mb-4">@ViewData["Title"]</h2>
+<partial name="_MensajesMantenimiento" />
+<form method="get" asp-controller="@(Model.Anulacion ? "Anulacion" : "Reportes")" asp-action="@(Model.Anulacion ? "Index" : "Consulta")" class="row g-2 mb-4">
+    <div class="col-sm-6"><label asp-for="NumeroFactura" class="form-label">Número de factura</label><input asp-for="NumeroFactura" class="form-control" type="number" min="1" step="1" required /></div>
+    <div class="col-sm-auto align-self-end"><button type="submit" class="btn btn-primary">Buscar</button></div>
+</form>
+<div asp-validation-summary="All" class="text-danger mb-3" role="alert"></div>
+@if (Model.Reporte != null)
+{
+    <partial name="_ReporteContenido" model="Model.Reporte" />
+    @if (Model.Anulacion && Model.Estado != "Anulada")
+    {
+        <div class="card border-danger mb-4"><div class="card-body">
+            <h4>¿Está seguro de anular la factura N.º @Model.NumeroFactura?</h4>
+            <p>Esta operación devolverá los productos al inventario. El total quedará en Q0.00; se conservarán los detalles, pagos históricos y auditoría.</p>
+            <form asp-controller="Anulacion" asp-action="Anular" method="post">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="numeroFactura" value="@Model.NumeroFactura" />
+                <div class="mb-3"><label for="confirmar" class="form-label">Confirmación</label><select name="confirmar" id="confirmar" class="form-select"><option value="false" selected>No, conservar la factura</option><option value="true">Sí, anular esta factura</option></select></div>
+                <button class="btn btn-danger" type="submit">Anular factura</button>
+            </form>
+        </div></div>
+    }
+}
+<a asp-controller="Reportes" asp-action="Index" class="btn btn-secondary">Volver a reportes</a>

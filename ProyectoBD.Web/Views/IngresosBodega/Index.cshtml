@@ -1,0 +1,18 @@
+@model IEnumerable<IngresoBodegaResumenViewModel>
+@{ ViewData["Title"] = "Ingresos a bodega"; }
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
+    <div><h2>Ingresos a bodega</h2><p class="text-muted mb-0">Recepciones completas y parciales de órdenes de compra.</p></div>
+    <a asp-action="Crear" class="btn btn-primary">Registrar ingreso</a>
+</div>
+<partial name="_MensajesMantenimiento" />
+@if (ViewBag.Orden != null) { <p>Ingresos de la orden @ViewBag.Orden · <a asp-action="Index">Ver todos</a></p> }
+<div class="card shadow-sm"><div class="card-body"><div class="table-responsive">
+<table class="table table-hover align-middle"><thead class="table-dark"><tr><th>N.º</th><th>Fecha</th><th>Orden</th><th>Registrado por</th><th>Cantidad recibida</th><th class="text-end">Costo total</th><th></th></tr></thead>
+<tbody>
+    @if (!Model.Any()) { <tr><td colspan="7" class="text-muted text-center">No hay ingresos para mostrar.</td></tr> }
+    @foreach (var registro in Model)
+    {
+        <tr><td>@registro.ID_IngresoB</td><td>@registro.Fecha.ToString("dd/MM/yyyy HH:mm")</td><td>@registro.ID_OrdenC</td><td>@registro.Usuario</td><td>@registro.CantidadRecibida</td><td class="text-end">@("Q" + registro.CostoTotal.ToString("N2"))</td><td><a asp-action="Detalle" asp-route-id="@registro.ID_IngresoB" class="btn btn-sm btn-outline-primary">Ver detalle</a></td></tr>
+    }
+</tbody></table>
+</div></div></div>

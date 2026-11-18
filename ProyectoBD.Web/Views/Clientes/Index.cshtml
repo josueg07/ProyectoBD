@@ -1,0 +1,41 @@
+@model IEnumerable<ProyectoBD.Entidades.Cliente>
+@{ ViewData["Title"] = "Clientes"; }
+
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
+    <div>
+        <h2>Clientes</h2>
+        <p class="text-muted mb-0">Consulta y administración de clientes.</p>
+    </div>
+    <a asp-action="Crear" class="btn btn-primary">Nuevo registro</a>
+</div>
+<partial name="_MensajesMantenimiento" />
+<div class="card shadow-sm"><div class="card-body"><div class="table-responsive">
+    <table class="table table-hover align-middle">
+        <thead class="table-dark"><tr>
+                    <th>Tipo de cliente</th>
+                    <th>Nombre o razón social</th>
+                    <th>Acciones</th>
+        </tr></thead>
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr><td colspan="3" class="text-muted text-center">No hay registros para mostrar.</td></tr>
+            }
+            @foreach (var registro in Model)
+            {
+                <tr>
+                        <td>@registro.TipoCliente</td>
+                        <td>@registro.NombreRazonSocial</td>
+                    <td class="text-nowrap">
+                        <a asp-action="Editar" asp-route-id="@registro.ID_Cliente" class="btn btn-sm btn-warning">Editar</a>
+                        <form asp-action="Eliminar" asp-route-id="@registro.ID_Cliente" method="post" class="d-inline"
+                              onsubmit="return confirm('¿Está seguro de eliminar este registro?');">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div></div></div>

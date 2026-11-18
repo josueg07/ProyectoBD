@@ -1,0 +1,5 @@
+Servidor: np:\\.\pipe\LOCALDB#71BB6143\tsql\query
+Autentica cajero: True
+Depurador=True; servidor=np:\\.\pipe\LOCALDB#71BB6143\tsql\query; base=Proyecto_BD
+OK: autenticación, menú y rechazo de contraseña incorrecta para cajero
+OK: autenticación, menú y rechazo de contraseña incorrecta para gerente

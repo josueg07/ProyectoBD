@@ -1,0 +1,9 @@
+@model List<FacturaWebViewModel>
+@{ ViewData["Title"] = "Facturación"; }
+<div class="d-flex justify-content-between align-items-center mb-4"><h2>Facturación</h2><a asp-action="Crear" class="btn btn-primary">Crear factura</a></div>
+<partial name="_MensajesMantenimiento" />
+<div class="table-responsive"><table class="table table-hover">
+    <thead class="table-dark"><tr><th>N.º factura</th><th>Fecha</th><th>Cliente</th><th>Estado</th><th>Total</th><th>Pagado</th><th>Saldo</th><th></th></tr></thead>
+    <tbody>@if (Model.Count == 0) { <tr><td colspan="8">No hay facturas para mostrar.</td></tr> }
+    @foreach (var f in Model) { <tr><td>@f.NumeroFactura</td><td>@f.Fecha.ToString("dd/MM/yyyy HH:mm")</td><td>@f.Cliente</td><td>@f.Estado</td><td>@("Q" + f.Total.ToString("N2"))</td><td>@("Q" + f.Pagado.ToString("N2"))</td><td>@("Q" + f.Saldo.ToString("N2"))</td><td><a asp-action="Detalle" asp-route-id="@f.ID_Factura" class="btn btn-outline-primary btn-sm">Detalle</a></td></tr> }</tbody>
+</table></div>

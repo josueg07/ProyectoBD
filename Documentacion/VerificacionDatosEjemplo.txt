@@ -1,0 +1,33 @@
+ID_Usuario|NombreUsuario|NombreRol
+----------|-------------|---------
+1|admin|Digitador
+54|cajero|Cajero
+55|gerente|Gerente
+ID_Factura|NumeroFactura|NombreRazonSocial|Total|Estado|Pagado|Saldo
+----------|-------------|-----------------|-----|------|------|-----
+41|1|Ana López|7200.00|Pagada|7200.00|.00
+42|2|Ferretería El Progreso|725.00|Pendiente|200.00|525.00
+43|3|Inversiones El Roble|260.00|Pendiente|.00|260.00
+ID_OrdenC|Estado|Nombre_Proveedor|ID_ProductoV|CantidadSolicitada|Recibido|Pendiente
+---------|------|----------------|------------|------------------|--------|---------
+28|Parcial|Suministros del Norte|34|100|75|25
+28|Parcial|Suministros del Norte|35|50|20|30
+29|Pendiente|Electro y PVC Guatemala|37|300|0|300
+29|Pendiente|Electro y PVC Guatemala|39|60|0|60
+29|Pendiente|Electro y PVC Guatemala|40|80|0|80
+ID_Cotizacion|Estado|NombreRazonSocial|Total
+-------------|------|-----------------|-----
+22|Pendiente|Carlos Méndez|285.00
+23|Confirmada|Marta Pérez|640.00
+24|Cancelada|Constructora Los Pinos|1100.00
+25|Facturada|Ferretería El Progreso|725.00
+ID_Lote|ID_ProductoV|NumeroLote|FechaIngreso|CantidadInicial|CantidadDisponible|CostoUnitario
+-------|------------|----------|------------|---------------|------------------|-------------
+41|29|NULL|2026-10-01 23:59:55|50|0|80.00
+42|29|PINT-BLANCO-02|2026-10-11 23:59:55|40|30|85.00
+43|30|PINT-AZUL-01|2026-10-05 23:59:55|25|25|90.00
+54|30|PINT-AZUL-02|2026-10-15 23:59:55|35|35|95.00
+ID_Factura|ID_Lote|FechaIngreso|CantidadSalida|CantidadDisponible
+----------|-------|------------|--------------|------------------
+41|41|2026-10-01 23:59:55|50|0
+41|42|2026-10-11 23:59:55|10|30

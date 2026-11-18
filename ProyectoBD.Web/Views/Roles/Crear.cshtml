@@ -1,0 +1,82 @@
+﻿@model ProyectoBD.Web.Models.RolViewModel
+
+@{
+    ViewData["Title"] = "Nuevo rol";
+}
+
+<div class="row justify-content-center">
+
+    <div class="col-lg-6">
+
+        <div class="card shadow-sm">
+
+            <div class="card-header bg-dark text-white">
+
+                <h4 class="mb-0">
+                    Nuevo rol
+                </h4>
+
+            </div>
+
+            <div class="card-body">
+
+                <form asp-action="Crear"
+                      method="post">
+
+                    @Html.AntiForgeryToken()
+
+                    <div asp-validation-summary="ModelOnly"
+                         class="alert alert-danger">
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label asp-for="NombreRol"
+                               class="form-label">
+                        </label>
+
+                        <input asp-for="NombreRol"
+                               class="form-control"
+                               autocomplete="off" />
+
+                        <span asp-validation-for="NombreRol"
+                              class="text-danger">
+                        </span>
+
+                    </div>
+
+
+                    <div class="d-flex gap-2">
+
+                        <button type="submit"
+                                class="btn btn-primary">
+
+                            Guardar rol
+
+                        </button>
+
+                        <a asp-action="Index"
+                           class="btn btn-secondary">
+
+                            Cancelar
+
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}

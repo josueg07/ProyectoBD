@@ -1,0 +1,33 @@
+Volver Roles: {X=620,Y=191,Width=146,Height=53}, visible=True, cliente={Width=800, Height=505}
+OK formulario: Roles
+Volver Usuarios: {X=900,Y=374,Width=141,Height=48}, visible=True, cliente={Width=1125, Height=782}
+OK formulario: Usuarios
+Volver Marcas: {X=806,Y=293,Width=182,Height=48}, visible=True, cliente={Width=1012, Height=690}
+OK formulario: Marcas
+Volver Proveedores: {X=806,Y=293,Width=182,Height=48}, visible=True, cliente={Width=1012, Height=690}
+OK formulario: Proveedores
+Volver Clientes: {X=806,Y=293,Width=182,Height=48}, visible=True, cliente={Width=1012, Height=690}
+OK formulario: Clientes
+Volver Productos: {X=1046,Y=805,Width=169,Height=48}, visible=True, cliente={Width=1238, Height=874}
+OK formulario: Productos
+Volver Categorias: {X=806,Y=293,Width=182,Height=48}, visible=True, cliente={Width=1012, Height=690}
+OK formulario: Categorias
+Volver Presentaciones: {X=806,Y=293,Width=182,Height=48}, visible=True, cliente={Width=1012, Height=690}
+OK formulario: Presentaciones
+Volver Colores: {X=806,Y=293,Width=182,Height=48}, visible=True, cliente={Width=1012, Height=690}
+OK formulario: Colores
+Volver Ubicaciones: {X=806,Y=293,Width=182,Height=48}, visible=True, cliente={Width=1012, Height=690}
+OK formulario: Ubicaciones
+Volver MetodosPago: {X=806,Y=293,Width=182,Height=48}, visible=True, cliente={Width=1012, Height=690}
+OK formulario: MetodosPago
+Volver Cotizacion: {X=1046,Y=805,Width=169,Height=48}, visible=True, cliente={Width=1238, Height=874}
+OK formulario: Cotizacion
+Volver OrdenCompra: {X=1046,Y=805,Width=169,Height=48}, visible=True, cliente={Width=1238, Height=874}
+OK formulario: OrdenCompra
+Volver IngresoBodega: {X=1035,Y=316,Width=180,Height=48}, visible=True, cliente={Width=1238, Height=828}
+OK formulario: IngresoBodega
+Volver Factura: {X=1046,Y=805,Width=169,Height=48}, visible=True, cliente={Width=1238, Height=874}
+OK formulario: Factura
+OK formulario: Menu-RolDigitador
+OK formulario: Menu-RolGerente
+OK formulario: Menu-RolCajero

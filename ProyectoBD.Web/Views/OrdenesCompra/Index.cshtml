@@ -1,0 +1,23 @@
+@model IEnumerable<OrdenCompraResumenViewModel>
+@{ ViewData["Title"] = "Órdenes de compra"; }
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
+    <div><h2>Órdenes de compra</h2><p class="text-muted mb-0">Documentos registrados y su estado actual.</p></div>
+    <a asp-action="Crear" class="btn btn-primary">Crear orden de compra</a>
+</div>
+<partial name="_MensajesMantenimiento" />
+<div class="card shadow-sm"><div class="card-body"><div class="table-responsive">
+<table class="table table-hover align-middle">
+    <thead class="table-dark"><tr><th>N.º</th><th>Fecha</th><th>Proveedor</th><th>Estado</th><th>Acciones</th></tr></thead>
+    <tbody>
+        @if (!Model.Any()) { <tr><td colspan="5" class="text-muted text-center">No hay documentos para mostrar.</td></tr> }
+        @foreach (var registro in Model)
+        {
+            <tr><td>@registro.ID_OrdenC</td><td>@registro.Fecha.ToString("dd/MM/yyyy")</td><td>@registro.Proveedor</td>
+                <td><span class="badge bg-secondary">@registro.Estado</span></td>
+                
+                <td><a asp-action="Detalle" asp-route-id="@registro.ID_OrdenC" class="btn btn-sm btn-outline-primary">Ver detalle</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div></div></div>

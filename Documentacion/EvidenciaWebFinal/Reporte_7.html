@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+
+    <title>
+        Factura N.&#xBA; 7 - Proyecto BD
+    </title>
+
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <link rel="stylesheet" href="/css/site.css?v=pAGv4ietcJNk_EwsQZ5BN9-K4MuNYS2a9wl4Jw-q9D0" />
+
+    <link rel="stylesheet" href="/ProyectoBD.Web.styles.css?v=b6wR6FqhB81HMdeKJM17AiuSa7T_oE5y48dLxPwPpZs" />
+</head>
+
+<body>
+
+<header b-kpn350b0en>
+
+    <nav b-kpn350b0en class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+        <div b-kpn350b0en class="container-fluid">
+
+            <a class="navbar-brand" href="/">
+
+                Comercializadora de Pinturas de Occidente
+
+            </a>
+
+            <button b-kpn350b0en class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#menuPrincipal">
+
+                <span b-kpn350b0en class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <div b-kpn350b0en class="collapse navbar-collapse"
+                 id="menuPrincipal">
+
+                    <ul b-kpn350b0en class="navbar-nav me-auto">
+
+                        <li b-kpn350b0en class="nav-item">
+                            <a class="nav-link" href="/">
+
+                                Inicio
+
+                            </a>
+                        </li>
+
+
+
+
+
+                            <li b-kpn350b0en class="nav-item dropdown">
+
+                                <a b-kpn350b0en class="nav-link dropdown-toggle"
+                                   href="#"
+                                   role="button"
+                                   data-bs-toggle="dropdown">
+
+                                    Administración
+
+                                </a>
+
+                                <ul b-kpn350b0en class="dropdown-menu">
+
+                                    <li b-kpn350b0en>
+                                        <a class="dropdown-item" href="/Usuarios">
+
+                                            Usuarios
+                                        </a>    
+                                    </li>
+
+                                    <li b-kpn350b0en>
+                                        <a class="dropdown-item" href="/Roles">
+
+                                            Roles
+
+                                        </a>
+                                    </li>
+
+                                </ul>
+
+                            </li>
+                            <li b-kpn350b0en class="nav-item dropdown">
+                                <a b-kpn350b0en class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                    Reportes
+                                </a>
+                                <ul b-kpn350b0en class="dropdown-menu">
+                                    <li b-kpn350b0en><a class="dropdown-item" href="/Reportes">Reportes gerenciales</a></li>
+                                    <li b-kpn350b0en><a class="dropdown-item" href="/Reportes/Consulta">Consulta de factura</a></li>
+                                    <li b-kpn350b0en><a class="dropdown-item" href="/Anulacion">Anulación de factura</a></li>
+                                </ul>
+                            </li>
+
+                    </ul>
+                    <div b-kpn350b0en class="d-flex align-items-center text-white">
+
+                        <div b-kpn350b0en class="me-3 text-end">
+
+                            <div b-kpn350b0en>
+                                Daniela G&#xF3;mez
+                            </div>
+
+                            <small b-kpn350b0en>
+                                Gerente
+                            </small>
+
+                        </div>
+
+
+                        <form method="post" action="/Account/Logout">
+
+                            
+
+                            <button b-kpn350b0en type="submit"
+                                    class="btn btn-outline-light btn-sm">
+
+                                Cerrar sesión
+
+                            </button>
+
+                        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8CdLME1DEUZChB2JCKHgbNCKnmFul8hQh1DLmZW2bc8OqJnLBBzJkpPK40dapAhJTCVlq8XVRQFbj9jZyVdConFY99orb0Ff386-ijNrA2HNWnTDq94MGQmE3fISF-AI7akJhDUn5kazrLv0sfNExi0rmOHNsgATP6StPmK_T_SErxSiiWHXvIs645NIatybmw" /></form>
+
+                    </div>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+</header>
+
+
+<div b-kpn350b0en class="container mt-4">
+
+    <main b-kpn350b0en role="main"
+          class="pb-3">
+
+        
+<div class="d-flex flex-wrap justify-content-between align-items-start gap-2 mb-3">
+    <div><h2>Factura N.&#xBA; 7</h2><p class="text-muted mb-1">Generado: 18/11/2026 00:54:54</p><p>Consulta por n&#xFA;mero de factura: 7</p></div>
+    <a class="btn btn-success" href="/Reportes/Pdf?token=20df899644c04f97abcce97eb957772f">Generar PDF</a>
+</div>
+ <p class="alert alert-info">FACTURA ANULADA. Los detalles y pagos se conservan como historial; no generan ventas ni saldo por cobrar.</p>     <div class="card shadow-sm mb-4"><div class="card-body">
+        <h4>Encabezado</h4>
+        <p class="text-muted small">Registros: 10</p>
+        <div class="table-responsive"><table class="table table-striped align-top" style="table-layout:auto">
+            <thead class="table-dark"><tr> <th>Dato</th>  <th>Valor</th> </tr></thead>
+            <tbody> <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">N&#xFA;mero de factura</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">7</td> </tr>  <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Fecha</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">18/11/2026 00:54</td> </tr>  <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Cliente</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">PRUEBAWEBFINAL_3ed27a cliente</td> </tr>  <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Estado</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Anulada</td> </tr>  <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Total</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Q0.00</td> </tr>  <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Empleado</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Prueba Web Temporal</td> </tr>  <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Usuario</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">PRUEBAWEBFINAL_3ed27a</td> </tr>  <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Total original</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Q40.00</td> </tr>  <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Pagos hist&#xF3;ricos</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Q40.00</td> </tr>  <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Saldo por cobrar</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Q0.00</td> </tr> </tbody>
+        </table></div>
+    </div></div>
+    <div class="card shadow-sm mb-4"><div class="card-body">
+        <h4>Detalle de productos</h4>
+        <p class="text-muted small">Registros: 1</p>
+        <div class="table-responsive"><table class="table table-striped align-top" style="table-layout:auto">
+            <thead class="table-dark"><tr> <th>Producto</th>  <th>Presentaci&#xF3;n</th>  <th>Color</th>  <th>Cantidad</th>  <th>Precio unitario</th>  <th>Subtotal</th> </tr></thead>
+            <tbody> <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">PRUEBAWEBFINAL_3ed27a producto</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Gal&#xF3;n</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Sin color</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">4</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Q10.00</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Q40.00</td> </tr> </tbody>
+        </table></div>
+ <p class="fw-bold mb-0">Cantidad: 4 &#xB7; Subtotal: Q40.00</p>     </div></div>
+    <div class="card shadow-sm mb-4"><div class="card-body">
+        <h4>Pagos hist&#xF3;ricos</h4>
+        <p class="text-muted small">Registros: 3</p>
+        <div class="table-responsive"><table class="table table-striped align-top" style="table-layout:auto">
+            <thead class="table-dark"><tr> <th>M&#xE9;todo de pago</th>  <th>Monto</th>  <th>Referencia</th> </tr></thead>
+            <tbody> <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Efectivo</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Q10.00</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">PRUEBAWEBFINAL_3ed27a</td> </tr>  <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Tarjeta</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Q20.00</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">PRUEBAWEBFINAL_3ed27a_T</td> </tr>  <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Cheque</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Q10.00</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">PRUEBAWEBFINAL_3ed27a_C</td> </tr> </tbody>
+        </table></div>
+ <p class="fw-bold mb-0">Monto: Q40.00</p>     </div></div>
+    <div class="card shadow-sm mb-4"><div class="card-body">
+        <h4>Auditor&#xED;a</h4>
+        <p class="text-muted small">Registros: 4</p>
+        <div class="table-responsive"><table class="table table-striped align-top" style="table-layout:auto">
+            <thead class="table-dark"><tr> <th>Fecha y hora</th>  <th>Acci&#xF3;n</th>  <th>Responsable</th>  <th>Datos anteriores</th>  <th>Datos nuevos</th> </tr></thead>
+            <tbody> <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">18/11/2026 00:54</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">FACTURA</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Prueba Web Temporal</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">&#x2014;</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">[{&quot;ID_DetalleF&quot;:1059,&quot;Cantidad&quot;:4,&quot;PrecioUnitario&quot;:10.00,&quot;Subtotal&quot;:40.00,&quot;ID_Factura&quot;:1053,&quot;ID_ProductoV&quot;:53}]</td> </tr>  <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">18/11/2026 00:54</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">PAGO</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Luis Morales</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">&#x2014;</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">[{&quot;ID_MetodoP&quot;:15,&quot;Metodo&quot;:&quot;&quot;,&quot;Monto&quot;:10,&quot;Referencia&quot;:&quot;PRUEBAWEBFINAL_3ed27a&quot;}]</td> </tr>  <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">18/11/2026 00:54</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">PAGO</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Luis Morales</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">&#x2014;</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">[{&quot;ID_MetodoP&quot;:16,&quot;Metodo&quot;:&quot;&quot;,&quot;Monto&quot;:20,&quot;Referencia&quot;:&quot;PRUEBAWEBFINAL_3ed27a_T&quot;},{&quot;ID_MetodoP&quot;:17,&quot;Metodo&quot;:&quot;&quot;,&quot;Monto&quot;:10,&quot;Referencia&quot;:&quot;PRUEBAWEBFINAL_3ed27a_C&quot;}]</td> </tr>  <tr> <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">18/11/2026 00:54</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">ANULAR FACTURA</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">Daniela G&#xF3;mez</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">{&quot;NumeroFactura&quot;:7,&quot;Estado&quot;:&quot;Pagada&quot;,&quot;Total&quot;:40.00,&quot;Lotes&quot;:[{&quot;ID_Lote&quot;:71,&quot;Cantidad&quot;:2,&quot;DisponibleAntes&quot;:0,&quot;ID_ProductoV&quot;:53,&quot;ID_UbicacionA&quot;:24},{&quot;ID_Lote&quot;:72,&quot;Cantidad&quot;:2,&quot;DisponibleAntes&quot;:1,&quot;ID_ProductoV&quot;:53,&quot;ID_UbicacionA&quot;:24}]}</td>  <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">{&quot;NumeroFactura&quot;:7,&quot;Estado&quot;:&quot;Anulada&quot;,&quot;Total&quot;:0.00,&quot;Lotes&quot;:[{&quot;ID_Lote&quot;:71,&quot;Reintegrada&quot;:2,&quot;DisponibleDespues&quot;:2},{&quot;ID_Lote&quot;:72,&quot;Reintegrada&quot;:2,&quot;DisponibleDespues&quot;:3}]}</td> </tr> </tbody>
+        </table></div>
+    </div></div>
+<p class="text-muted small">El PDF conserva los datos de esta previsualización durante 20 minutos. Para consultar cambios posteriores, genere nuevamente el reporte.</p>
+
+<a class="btn btn-secondary" href="/Reportes">Volver a reportes</a>
+
+
+    </main>
+
+</div>
+
+
+<footer b-kpn350b0en class="border-top footer text-muted">
+
+    <div b-kpn350b0en class="container">
+
+        &copy; 2026 - Sistema de Ventas e Inventario
+
+    </div>
+
+</footer>
+
+
+<script src="/lib/jquery/dist/jquery.min.js"></script>
+
+<script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="/js/site.js?v=hRQyftXiu1lLX2P9Ly9xa4gHJgLeR1uGN5qegUobtGo"></script>
+
+
+
+</body>
+
+</html>

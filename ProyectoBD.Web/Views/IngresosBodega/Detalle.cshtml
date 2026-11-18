@@ -1,0 +1,13 @@
+@model IngresoBodegaResumenViewModel
+@{ ViewData["Title"] = "Ingreso a bodega " + Model.ID_IngresoB; }
+<h2>@ViewData["Title"]</h2>
+<p class="text-muted">Orden @Model.ID_OrdenC · @Model.Fecha.ToString("dd/MM/yyyy HH:mm") · Registrado por @Model.Usuario</p>
+<partial name="_MensajesMantenimiento" />
+<div class="card shadow-sm"><div class="card-body"><div class="table-responsive">
+<table class="table align-middle"><thead class="table-dark"><tr><th>Producto / presentación / color</th><th>Cantidad recibida</th><th class="text-end">Costo unitario</th><th class="text-end">Subtotal</th></tr></thead>
+<tbody>@foreach (var linea in Model.Detalle) { <tr><td>@linea.Producto</td><td>@linea.Cantidad</td><td class="text-end">@("Q" + linea.CostoUnitario.ToString("N2"))</td><td class="text-end">@("Q" + linea.Subtotal.ToString("N2"))</td></tr> }</tbody></table>
+</div><p class="fs-5 text-end fw-bold">Costo total: @("Q" + Model.CostoTotal.ToString("N2"))</p></div></div>
+<div class="d-flex gap-2 mt-3">
+    <a asp-controller="OrdenesCompra" asp-action="Detalle" asp-route-id="@Model.ID_OrdenC" class="btn btn-primary">Consultar pendientes de la orden</a>
+    <a asp-action="Index" class="btn btn-secondary">Volver al listado</a>
+</div>

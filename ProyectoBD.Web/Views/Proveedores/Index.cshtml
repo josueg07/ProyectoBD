@@ -1,0 +1,39 @@
+@model IEnumerable<ProyectoBD.Entidades.Proveedor>
+@{ ViewData["Title"] = "Proveedores"; }
+
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
+    <div>
+        <h2>Proveedores</h2>
+        <p class="text-muted mb-0">Consulta y administración de proveedores.</p>
+    </div>
+    <a asp-action="Crear" class="btn btn-primary">Nuevo registro</a>
+</div>
+<partial name="_MensajesMantenimiento" />
+<div class="card shadow-sm"><div class="card-body"><div class="table-responsive">
+    <table class="table table-hover align-middle">
+        <thead class="table-dark"><tr>
+                    <th>Nombre del proveedor</th>
+                    <th>Acciones</th>
+        </tr></thead>
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr><td colspan="2" class="text-muted text-center">No hay registros para mostrar.</td></tr>
+            }
+            @foreach (var registro in Model)
+            {
+                <tr>
+                        <td>@registro.Nombre_Proveedor</td>
+                    <td class="text-nowrap">
+                        <a asp-action="Editar" asp-route-id="@registro.ID_Proveedor" class="btn btn-sm btn-warning">Editar</a>
+                        <form asp-action="Eliminar" asp-route-id="@registro.ID_Proveedor" method="post" class="d-inline"
+                              onsubmit="return confirm('¿Está seguro de eliminar este registro?');">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div></div></div>

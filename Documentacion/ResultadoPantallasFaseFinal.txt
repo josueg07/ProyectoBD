@@ -1,0 +1,3 @@
+OK siete reportes actuales: total Q9,375.00; ingresos=9; más vendidos=9; lotes=17; menos vendidos=14; sin stock=1; todas las facturas consultables.
+OK período vacío, ordenamientos y productos sin ventas.
+OK WinForms: seis reportes, consulta anulada con pagos/auditoría, botones Volver, selección invalidada al editar, menús por rol; capturas guardadas.

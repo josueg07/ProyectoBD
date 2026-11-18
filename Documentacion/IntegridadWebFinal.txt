@@ -1,0 +1,6 @@
+Procedimientos revisados: 14
+Definiciones modificadas: 0
+Archivos iniciales revisados: 282
+Archivos existentes sin cambios: 279
+Archivos existentes modificados: 3 (Program.cs, ProyectoBD.Web.csproj y Views/Shared/_Layout.cshtml)
+WinForms, Entidades, Datos, Negocio, Database y procesos/mantenimientos Web previos: sin cambios.

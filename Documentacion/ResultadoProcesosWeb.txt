@@ -1,0 +1,28 @@
+PROCESOS WEB | 2026-11-18T00:08:48
+OK listados, formularios, permisos GET/POST, antiforgery y 404: Cotizaciones
+OK listados, formularios, permisos GET/POST, antiforgery y 404: OrdenesCompra
+OK listados, formularios, permisos GET/POST, antiforgery y 404: IngresosBodega
+OK menú, mantenimiento existente y /health conservados.
+OK rechazo sin cambios: variantes repetidas en cotización
+OK rechazo sin cambios: precio con tres decimales
+OK rechazo sin cambios: cliente inexistente
+OK rechazo sin cambios: cantidad no positiva
+OK cotización de dos líneas: Q81.00, total/estado inalterables desde POST, confirmar y cancelar; cancelada no se confirma. Agregar/quitar sin guardar.
+OK rechazo sin cambios: variantes repetidas en compra
+OK rechazo sin cambios: proveedor inexistente
+OK rechazo sin cambios: sobre-recepción
+OK rechazo sin cambios: cantidad negativa
+OK rechazo sin cambios: cantidad no numérica
+OK rechazo sin cambios: costo no positivo
+OK rechazo sin cambios: costo con tres decimales
+OK rechazo sin cambios: lote demasiado largo
+OK rechazo sin cambios: ubicación inexistente
+OK rechazo sin cambios: fecha futura
+OK rechazo sin cambios: fecha ausente
+OK rechazo sin cambios: ninguna unidad a recibir
+OK rechazo sin cambios: línea de otra orden
+OK rechazo sin cambios: detalle de recepción duplicado
+OK rechazo sin cambios: orden ya completa / segundo envío
+OK orden 31: Pendiente → Parcial (2/0) → Completa (3/7). Stock 5/7; tres lotes, tres entradas, dos auditorías y responsable de sesión correcto. Ingresos 37/38.
+RESULTADO: cotizaciones, compras e ingresos parciales/completos verificados por HTTP y SQL Server.
+OK limpieza de documentos, lotes y catálogos exclusivamente propios de la prueba wv91b488ed46.

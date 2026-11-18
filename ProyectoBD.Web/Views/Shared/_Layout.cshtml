@@ -1,0 +1,332 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+
+    <title>
+        @ViewData["Title"] - Proyecto BD
+    </title>
+
+    <link rel="stylesheet"
+          href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <link rel="stylesheet"
+          href="~/css/site.css"
+          asp-append-version="true" />
+
+    <link rel="stylesheet"
+          href="~/ProyectoBD.Web.styles.css"
+          asp-append-version="true" />
+</head>
+
+<body>
+
+<header>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+        <div class="container-fluid">
+
+            <a class="navbar-brand"
+               asp-controller="Home"
+               asp-action="Index">
+
+                Comercializadora de Pinturas de Occidente
+
+            </a>
+
+            <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#menuPrincipal">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <div class="collapse navbar-collapse"
+                 id="menuPrincipal">
+
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    <ul class="navbar-nav me-auto">
+
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               asp-controller="Home"
+                               asp-action="Index">
+
+                                Inicio
+
+                            </a>
+                        </li>
+
+
+                        @* =========================
+                           DIGITADOR
+                           ========================= *@
+
+                        @if (User.IsInRole("Digitador"))
+                        {
+                            <li class="nav-item dropdown">
+
+                                <a class="nav-link dropdown-toggle"
+                                   href="#"
+                                   role="button"
+                                   data-bs-toggle="dropdown">
+
+                                    Mantenimientos
+
+                                </a>
+
+                                <ul class="dropdown-menu">
+
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="Productos" asp-action="Index">
+                                            Productos
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="Clientes" asp-action="Index">
+                                            Clientes
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="Proveedores" asp-action="Index">
+                                            Proveedores
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="Marcas" asp-action="Index">
+                                            Marcas
+                                        </a>
+                                    </li>
+
+                                    <li><a class="dropdown-item" asp-controller="Categorias" asp-action="Index">Categorías</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Presentaciones" asp-action="Index">Presentaciones</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Colores" asp-action="Index">Colores</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Variantes" asp-action="Index">Variantes de producto</a></li>
+
+                                </ul>
+
+                            </li>
+
+
+                            <li class="nav-item dropdown">
+
+                                <a class="nav-link dropdown-toggle"
+                                   href="#"
+                                   role="button"
+                                   data-bs-toggle="dropdown">
+
+                                    Procesos
+
+                                </a>
+
+                                <ul class="dropdown-menu">
+
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="Cotizaciones" asp-action="Index">
+                                            Cotizaciones
+                                        </a>
+                                    </li>
+
+                                    <li><a class="dropdown-item" asp-controller="Facturas" asp-action="Index">Facturación</a></li>
+
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="OrdenesCompra" asp-action="Index">
+                                            Órdenes de compra
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="IngresosBodega" asp-action="Index">
+                                            Ingreso a bodega
+                                        </a>
+                                    </li>
+
+                                </ul>
+
+                            </li>
+                        }
+
+
+                        @* =========================
+                           CAJERO
+                           ========================= *@
+
+                        @if (User.IsInRole("Cajero"))
+                        {
+                            <li class="nav-item dropdown">
+
+                                <a class="nav-link dropdown-toggle"
+                                   href="#"
+                                   role="button"
+                                   data-bs-toggle="dropdown">
+
+                                    Caja
+
+                                </a>
+
+                                <ul class="dropdown-menu">
+
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="Cobros" asp-action="Index">
+                                            Cobros
+                                        </a>
+                                    </li>
+                                    <li><a class="dropdown-item" asp-controller="MediosPago" asp-action="Index">Medios de pago</a></li>
+
+                                </ul>
+
+                            </li>
+                        }
+
+
+                        @* =========================
+                           GERENTE
+                           ========================= *@
+
+                        @if (User.IsInRole("Gerente"))
+                        {
+                            <li class="nav-item dropdown">
+
+                                <a class="nav-link dropdown-toggle"
+                                   href="#"
+                                   role="button"
+                                   data-bs-toggle="dropdown">
+
+                                    Administración
+
+                                </a>
+
+                                <ul class="dropdown-menu">
+
+                                    <li>
+                                        <a class="dropdown-item"
+                                           asp-controller="Usuarios"
+                                           asp-action="Index">
+
+                                            Usuarios
+                                        </a>    
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item"
+                                           asp-controller="Roles"
+                                           asp-action="Index">
+
+                                            Roles
+
+                                        </a>
+                                    </li>
+
+                                </ul>
+
+                            </li>
+
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                    Reportes
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" asp-controller="Reportes" asp-action="Index">Reportes gerenciales</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Reportes" asp-action="Consulta">Consulta de factura</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Anulacion" asp-action="Index">Anulación de factura</a></li>
+                                </ul>
+                            </li>
+                        }
+
+                    </ul>
+
+
+                    <div class="d-flex align-items-center text-white">
+
+                        <div class="me-3 text-end">
+
+                            <div>
+                                @User.Identity?.Name
+                            </div>
+
+                            <small>
+                                @User.FindFirst(
+                                    System.Security.Claims.ClaimTypes.Role
+                                )?.Value
+                            </small>
+
+                        </div>
+
+
+                        <form asp-controller="Account"
+                              asp-action="Logout"
+                              method="post">
+
+                            @Html.AntiForgeryToken()
+
+                            <button type="submit"
+                                    class="btn btn-outline-light btn-sm">
+
+                                Cerrar sesión
+
+                            </button>
+
+                        </form>
+
+                    </div>
+                }
+
+            </div>
+
+        </div>
+
+    </nav>
+
+</header>
+
+
+<div class="container mt-4">
+
+    <main role="main"
+          class="pb-3">
+
+        @RenderBody()
+
+    </main>
+
+</div>
+
+
+<footer class="border-top footer text-muted">
+
+    <div class="container">
+
+        &copy; 2026 - Sistema de Ventas e Inventario
+
+    </div>
+
+</footer>
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="~/js/site.js"
+        asp-append-version="true"></script>
+
+@await RenderSectionAsync(
+    "Scripts",
+    required: false
+)
+
+</body>
+
+</html>

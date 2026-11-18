@@ -1,0 +1,33 @@
+WEB FINAL 2026-11-18T00:54:43 PRUEBAWEBFINAL_3ed27a
+OK seguridad: anónimos, roles por URL GET/POST, antiforgery, menús, 404, PDF sin copia y anulación sólo POST.
+OK mantenimiento Medios de pago Cajero: crear, editar, eliminar exclusivamente el registro temporal.
+PEPS verificado: lote antiguo 71 recibió 2/salió 2/quedó 0; reciente 72 recibió 3/salió 2/quedó 1. Factura ID 1053, N.º 7, Q40.
+OK rechazo sin cambios: cotización ya facturada
+OK rechazo sin cambios: inventario insuficiente con reversión completa
+OK rechazo sin cambios: precio de tres decimales
+OK rechazo sin cambios: cantidad cero
+OK rechazo sin cambios: variantes duplicadas
+OK rechazo sin cambios: sobrepago
+OK rechazo sin cambios: monto cero
+OK rechazo sin cambios: monto negativo
+OK rechazo sin cambios: monto tres decimales
+OK rechazo sin cambios: método inexistente
+OK rechazo sin cambios: referencia demasiado larga
+OK rechazo sin cambios: segundo cobro a factura pagada
+OK pago parcial Q10 efectivo + operación múltiple Q20 tarjeta/Q10 cheque: tres pagos históricos, estado Pagada y saldo Q0.
+OK rechazo sin cambios: fechas invertidas
+OK rechazo sin cambios: número de factura inexistente
+OK reporte 1: HTML y PDF 39630 bytes.
+OK reporte 2: HTML y PDF 38301 bytes.
+OK reporte 3: HTML y PDF 37524 bytes.
+OK reporte 4: HTML y PDF 44127 bytes.
+OK reporte 5: HTML y PDF 40750 bytes.
+OK reporte 6: HTML y PDF 37912 bytes.
+OK reporte 7: HTML y PDF 42877 bytes.
+OK rechazo sin cambios: cobro de anulada
+OK reporte 7: HTML y PDF 43964 bytes.
+RECORRIDO PRUEBAWEBFINAL_3ed27a: cliente 35, proveedor 29, producto 41, variantes 53/54, ubicación 24, usuario 67; orden 36, ingresos 45/46, cotización 30, factura 1053/número 7, directa 1055/número 8.
+OK inventario A: 0 → 2 → 5 → 1 → 5; B: 0 → 7 → 0 → 7. Anulada total Q0, original Q40, tres pagos conservados, dos asignaciones de lote conservadas, auditoría y segunda anulación bloqueada. Reportes excluyen anuladas.
+RESULTADO: recorrido integral HTTP/SQL Server completo y siete PDFs descargados.
+OK limpieza de documentos, lotes y catálogos exclusivamente propios de la prueba wv13d2c0b2f8.
+OK limpieza exclusivamente de documentos temporales propios; sin modificar usuarios ni documentos operativos anteriores.

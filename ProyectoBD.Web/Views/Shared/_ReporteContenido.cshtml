@@ -1,0 +1,20 @@
+@model ReporteVistaViewModel
+<div class="d-flex flex-wrap justify-content-between align-items-start gap-2 mb-3">
+    <div><h2>@Model.Titulo</h2><p class="text-muted mb-1">Generado: @Model.Generado.ToString("dd/MM/yyyy HH:mm:ss")</p><p>@Model.Parametros</p></div>
+    <a asp-controller="Reportes" asp-action="Pdf" asp-route-token="@Model.Token" class="btn btn-success">Generar PDF</a>
+</div>
+@if (Model.Nota.Length > 0) { <p class="alert alert-info">@Model.Nota</p> }
+@foreach (var tabla in Model.Tablas)
+{
+    <div class="card shadow-sm mb-4"><div class="card-body">
+        <h4>@tabla.Titulo</h4>
+        <p class="text-muted small">Registros: @tabla.Filas.Count</p>
+        <div class="table-responsive"><table class="table table-striped align-top" style="table-layout:auto">
+            <thead class="table-dark"><tr>@foreach (var c in tabla.Columnas) { <th>@c</th> }</tr></thead>
+            <tbody>@if (tabla.Filas.Count == 0) { <tr><td colspan="@tabla.Columnas.Count">No hay resultados para esta consulta.</td></tr> }
+            @foreach (var fila in tabla.Filas) { <tr>@foreach (var celda in fila) { <td style="overflow-wrap:anywhere;min-width:100px;white-space:pre-wrap">@celda</td> }</tr> }</tbody>
+        </table></div>
+        @if (tabla.Totales.Length > 0) { <p class="fw-bold mb-0">@tabla.Totales</p> }
+    </div></div>
+}
+<p class="text-muted small">El PDF conserva los datos de esta previsualización durante 20 minutos. Para consultar cambios posteriores, genere nuevamente el reporte.</p>

@@ -1,0 +1,31 @@
+@model CotizacionResumenViewModel
+@{ ViewData["Title"] = "Cotización " + Model.ID_Cotizacion; }
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
+    <div><h2>@ViewData["Title"]</h2><p class="text-muted mb-0">@Model.Cliente · @Model.Fecha.ToString("dd/MM/yyyy")</p></div>
+    <span class="badge bg-secondary fs-6">@Model.Estado</span>
+</div>
+<partial name="_MensajesMantenimiento" />
+<div class="card shadow-sm"><div class="card-body"><div class="table-responsive">
+<table class="table align-middle"><thead class="table-dark"><tr><th>Producto / presentación / color</th><th>Cantidad</th><th class="text-end">Precio unitario</th><th class="text-end">Subtotal</th></tr></thead>
+<tbody>
+    @foreach (var linea in Model.Detalle)
+    {
+        <tr><td>@linea.Producto</td><td>@linea.Cantidad</td><td class="text-end">@("Q" + linea.PrecioUnitario.ToString("N2"))</td><td class="text-end">@("Q" + linea.Subtotal.ToString("N2"))</td></tr>
+    }
+</tbody></table>
+</div><p class="fs-5 text-end fw-bold">Total: @("Q" + Model.Total.ToString("N2"))</p></div></div>
+<div class="d-flex flex-wrap gap-2 mt-3">
+    @if (Model.Estado == "Pendiente")
+    {
+        <form asp-action="Confirmar" asp-route-id="@Model.ID_Cotizacion" method="post" onsubmit="return confirm('¿Desea confirmar esta cotización?');">
+            @Html.AntiForgeryToken()<button type="submit" class="btn btn-success">Confirmar</button>
+        </form>
+    }
+    @if (Model.Estado == "Pendiente" || Model.Estado == "Confirmada")
+    {
+        <form asp-action="Cancelar" asp-route-id="@Model.ID_Cotizacion" method="post" onsubmit="return confirm('¿Desea cancelar esta cotización?');">
+            @Html.AntiForgeryToken()<button type="submit" class="btn btn-danger">Cancelar cotización</button>
+        </form>
+    }
+    <a asp-action="Index" class="btn btn-secondary">Volver al listado</a>
+</div>

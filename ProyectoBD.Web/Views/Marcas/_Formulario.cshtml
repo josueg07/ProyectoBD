@@ -1,0 +1,7 @@
+@model ProyectoBD.Web.Models.MarcaViewModel
+<div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
+<div class="mb-3">
+    <label asp-for="NombreMarca" class="form-label"></label>
+    <input asp-for="NombreMarca" class="form-control" maxlength="45" autocomplete="off" />
+    <span asp-validation-for="NombreMarca" class="text-danger"></span>
+</div>

@@ -1,0 +1,161 @@
+﻿@model IEnumerable<ProyectoBD.Entidades.Usuario>
+
+@{
+    ViewData["Title"] = "Usuarios";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+        <h2>Administración de usuarios</h2>
+
+        <p class="text-muted mb-0">
+            Usuarios registrados en el sistema.
+        </p>
+    </div>
+
+    <a asp-controller="Usuarios"
+       asp-action="Crear"
+       class="btn btn-primary">
+
+        Nuevo usuario
+
+    </a>
+
+</div>
+
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">
+        @ViewBag.Error
+    </div>
+}
+
+
+<div class="card shadow-sm">
+
+    <div class="card-body">
+
+        <div class="table-responsive">
+
+            @if (TempData["Mensaje"] != null)
+            {
+                <div class="alert alert-success">
+                    @TempData["Mensaje"]
+                </div>
+            }
+
+            @if (TempData["Error"] != null)
+            {
+                <div class="alert alert-danger">
+                    @TempData["Error"]
+                </div>
+            }
+
+            <table class="table table-hover align-middle">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
+                        <th>Usuario</th>
+                        <th>Rol</th>
+                        <th>Acciones</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var usuario in Model)
+                        {
+                            <tr>
+
+                                <td>
+                                    @usuario.ID_Usuario
+                                </td>
+
+                                <td>
+                                    @usuario.Nombres
+                                </td>
+
+                                <td>
+                                    @usuario.Apellidos
+                                </td>
+
+                                <td>
+                                    @usuario.NombreUsuario
+                                </td>
+
+                                <td>
+                                    <span class="badge bg-secondary">
+                                        @usuario.NombreRol
+                                    </span>
+                                </td>
+
+                                <td>
+
+                                    <a asp-action="Editar"
+                                       asp-route-id="@usuario.ID_Usuario"
+                                       class="btn btn-sm btn-warning">
+
+                                       Editar
+
+                                    </a>
+
+                                    <a asp-action="CambiarPassword"
+                                       asp-route-id="@usuario.ID_Usuario"
+                                       class="btn btn-sm btn-info">
+
+                                        Contraseña
+
+                                    </a>
+
+                                    <form asp-action="Eliminar"
+                                          asp-route-id="@usuario.ID_Usuario"
+                                          method="post"
+                                          class="d-inline"
+                                          onsubmit="return confirm('¿Está seguro de eliminar este usuario?');">
+
+                                        @Html.AntiForgeryToken()
+
+                                        <button type="submit"
+                                                class="btn btn-sm btn-danger">
+                                            Eliminar
+                                        </button>
+
+                                    </form>
+
+                                </td>
+
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+
+                            <td colspan="6"
+                                class="text-center text-muted">
+
+                                No hay usuarios registrados.
+
+                            </td>
+
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

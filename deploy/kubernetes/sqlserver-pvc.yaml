@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: sql-data
+  namespace: proyectobd
+spec:
+  accessModes: [ReadWriteOnce]
+  resources:
+    requests:
+      storage: 8Gi
+---
+# Demostración de un nodo: ambos Pods Web se colocan en el mismo nodo.
+# Producción multinodo: sustituir por almacenamiento ReadWriteMany compartido.
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: dp-keys
+  namespace: proyectobd
+spec:
+  accessModes: [ReadWriteOnce]
+  resources:
+    requests:
+      storage: 100Mi

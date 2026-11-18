@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: proyectobd-web
+  namespace: proyectobd
+spec:
+  type: ClusterIP
+  sessionAffinity: ClientIP
+  selector: {app: proyectobd-web}
+  ports: [{name: http, port: 80, targetPort: http}]

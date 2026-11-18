@@ -1,0 +1,24 @@
+@model FacturaWebViewModel
+<div class="card shadow-sm mb-4"><div class="card-body">
+    <h3>Factura N.º @Model.NumeroFactura</h3>
+    <dl class="row mb-0">
+        <dt class="col-sm-3">Fecha</dt><dd class="col-sm-9">@Model.Fecha.ToString("dd/MM/yyyy HH:mm")</dd>
+        <dt class="col-sm-3">Cliente</dt><dd class="col-sm-9">@Model.Cliente</dd>
+        <dt class="col-sm-3">Empleado</dt><dd class="col-sm-9">@Model.Empleado</dd>
+        <dt class="col-sm-3">Estado</dt><dd class="col-sm-9">@Model.Estado</dd>
+        <dt class="col-sm-3">Total actual</dt><dd class="col-sm-9">@("Q" + Model.Total.ToString("N2"))</dd>
+        <dt class="col-sm-3">Pagos históricos</dt><dd class="col-sm-9">@("Q" + Model.Pagado.ToString("N2"))</dd>
+        <dt class="col-sm-3">Saldo pendiente</dt><dd class="col-sm-9">@("Q" + Model.Saldo.ToString("N2"))</dd>
+    </dl>
+    @if (Model.Estado == "Anulada") { <p class="alert alert-warning mt-3 mb-0">Factura anulada. Detalles y pagos conservados como historial; no tiene saldo por cobrar.</p> }
+</div></div>
+<div class="table-responsive"><table class="table table-striped">
+    <thead class="table-dark"><tr><th>Producto / presentación / color</th><th>Cantidad</th><th>Precio unitario</th><th>Subtotal</th></tr></thead>
+    <tbody>@foreach (var l in Model.Detalle) { <tr><td>@l.Producto</td><td>@l.Cantidad</td><td>@("Q" + l.PrecioUnitario.ToString("N2"))</td><td>@("Q" + l.Subtotal.ToString("N2"))</td></tr> }</tbody>
+</table></div>
+<h4>Pagos históricos</h4>
+<div class="table-responsive"><table class="table">
+    <thead><tr><th>Método</th><th>Monto</th><th>Referencia</th></tr></thead>
+    <tbody>@if (Model.Pagos.Count == 0) { <tr><td colspan="3">No hay pagos registrados.</td></tr> }
+    @foreach (var p in Model.Pagos) { <tr><td>@p.Metodo</td><td>@("Q" + p.Monto.ToString("N2"))</td><td>@p.Referencia</td></tr> }</tbody>
+</table></div>

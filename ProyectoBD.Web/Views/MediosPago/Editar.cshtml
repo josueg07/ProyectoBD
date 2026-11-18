@@ -1,0 +1,21 @@
+@model ProyectoBD.Web.Models.MedioPagoViewModel
+@{ ViewData["Title"] = "Editar medios de pago"; }
+
+<div class="row justify-content-center"><div class="col-lg-6">
+    <div class="card shadow-sm">
+        <div class="card-header bg-dark text-white"><h4 class="mb-0">@ViewData["Title"]</h4></div>
+        <div class="card-body">
+            <form asp-action="Editar" asp-route-id="@Model.ID_MetodoP" method="post">
+                @Html.AntiForgeryToken()
+                <input type="hidden" asp-for="ID_MetodoP" />
+                <partial name="_Formulario" model="Model" />
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div></div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }
+

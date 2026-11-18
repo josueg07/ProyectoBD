@@ -1,0 +1,7 @@
+@model ProyectoBD.Web.Models.ProveedorViewModel
+<div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
+<div class="mb-3">
+    <label asp-for="Nombre_Proveedor" class="form-label"></label>
+    <input asp-for="Nombre_Proveedor" class="form-control" maxlength="45" autocomplete="off" />
+    <span asp-validation-for="Nombre_Proveedor" class="text-danger"></span>
+</div>

@@ -1,0 +1,15 @@
+@model ProyectoBD.Web.Models.ClienteViewModel
+<div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
+<div class="mb-3">
+    <label asp-for="TipoCliente" class="form-label"></label>
+    <select asp-for="TipoCliente" class="form-select">
+        <option value="Particular">Particular</option>
+        <option value="Empresa">Empresa</option>
+    </select>
+    <span asp-validation-for="TipoCliente" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="NombreRazonSocial" class="form-label"></label>
+    <input asp-for="NombreRazonSocial" class="form-control" maxlength="120" autocomplete="off" />
+    <span asp-validation-for="NombreRazonSocial" class="text-danger"></span>
+</div>

@@ -1,0 +1,5 @@
+@model ReporteVistaViewModel
+@{ ViewData["Title"] = Model.Titulo; }
+<partial name="_MensajesMantenimiento" />
+<partial name="_ReporteContenido" model="Model" />
+<a asp-action="Index" class="btn btn-secondary">Volver a reportes</a>

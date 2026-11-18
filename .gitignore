@@ -1,0 +1,10 @@
+**/bin/
+**/obj/
+.vs/
+**/.env
+**/.env.local
+**/*.pfx
+**/*.key
+**/secret.local.yaml
+deploy/docker/secrets/
+tmp/

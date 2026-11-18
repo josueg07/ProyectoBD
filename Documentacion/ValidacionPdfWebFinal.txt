@@ -1,0 +1,9 @@
+Reporte_1.pdf: 1 paginas; texto Unicode legible; 575 caracteres
+Reporte_2.pdf: 1 paginas; texto Unicode legible; 396 caracteres
+Reporte_3.pdf: 1 paginas; texto Unicode legible; 327 caracteres
+Reporte_4.pdf: 2 paginas; texto Unicode legible; 1959 caracteres
+Reporte_5.pdf: 2 paginas; texto Unicode legible; 959 caracteres
+Reporte_6.pdf: 1 paginas; texto Unicode legible; 320 caracteres
+Reporte_7.pdf: 3 paginas; texto Unicode legible; 2078 caracteres
+Revision visual con Poppler: textos, columnas, lotes largos y auditoria legibles, sin solapamientos.
+Reporte 7: estado Anulada, Q0.00 actual, Q40.00 original, pagos y auditoria conservados.

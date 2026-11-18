@@ -1,0 +1,32 @@
+@model ProductoVarianteViewModel
+<div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
+<div class="mb-3">
+    @if (Model.ID_ProductoV > 0)
+    {
+        <label for="ProductoActual" class="form-label">Producto</label>
+        <select asp-for="ID_Producto" id="ProductoActual" asp-items="Model.Productos" class="form-select" disabled></select>
+        <input type="hidden" asp-for="ID_Producto" />
+        <div class="form-text">El producto de una variante existente se conserva.</div>
+    }
+    else
+    {
+        <label asp-for="ID_Producto" class="form-label"></label>
+        <select asp-for="ID_Producto" asp-items="Model.Productos" class="form-select"><option value="">Seleccione un producto</option></select>
+    }
+    <span asp-validation-for="ID_Producto" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="ID_Presentacion" class="form-label"></label>
+    <select asp-for="ID_Presentacion" asp-items="Model.Presentaciones" class="form-select"><option value="">Seleccione una presentación</option></select>
+    <span asp-validation-for="ID_Presentacion" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="ID_Color" class="form-label"></label>
+    <select asp-for="ID_Color" asp-items="Model.Colores" class="form-select"><option value="">Sin color</option></select>
+    <span asp-validation-for="ID_Color" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="PrecioVenta" class="form-label"></label>
+    <div class="input-group"><span class="input-group-text">Q</span><input asp-for="PrecioVenta" class="form-control" type="number" min="0.01" max="9999999999.99" step="0.01" /></div>
+    <span asp-validation-for="PrecioVenta" class="text-danger"></span>
+</div>

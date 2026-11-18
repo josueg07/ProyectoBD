@@ -1,0 +1,38 @@
+Changed database context to 'Proyecto_BD'.
+           
+-----------
+          1
+           
+-----------
+          2
+           
+-----------
+          2
+OK: recepción parcial/completa, lote NULL, venta directa PEPS 50+10, movimientos, pago parcial y mixto exacto, conversión de cotización y auditoría.
+           
+-----------
+          3
+OK: sobre-recepción.
+           
+-----------
+          4
+OK: inventario insuficiente revierte factura y consumo parcial.
+           
+-----------
+          5
+OK: cotización pendiente no se factura.
+           
+-----------
+          6
+OK: rol Cajero no puede crear compras.
+           
+-----------
+          7
+OK: sobrepago revierte pagos.
+           
+-----------
+          8
+           
+-----------
+          5
+OK: cotización no se factura dos veces.

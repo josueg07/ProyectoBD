@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Inicio";
+}
+
+<div class="text-center mt-5">
+
+    <h1 class="display-4">
+        Bienvenido al sistema
+    </h1>
+
+    <h3 class="mt-4">
+        @User.Identity?.Name
+    </h3>
+
+    <p class="fs-5">
+        Rol:
+        <strong>
+            @User.FindFirst(
+            System.Security.Claims.ClaimTypes.Role
+                        )?.Value
+        </strong>
+    </p>
+
+    <form asp-controller="Account"
+          asp-action="Logout"
+          method="post">
+
+        @Html.AntiForgeryToken()
+
+        <button type="submit"
+                class="btn btn-danger mt-3">
+            Cerrar sesión
+        </button>
+
+    </form>
+
+</div>

@@ -1,0 +1,5 @@
+OK: roles CRUD, bloqueo de rol asignado, usuarios CRUD, BCrypt, cambio de contraseña, validación y listado sin hashes.
+OK: formularios cargados con datos reales y factura renderizada con PreviewPrintController, sin imprimir físicamente.
+OK: flujo C# compra → dos ingresos → PEPS → cotización/factura → pagos JSON; dos ventas concurrentes no sobrevendieron; permisos de Negocio.
+OK: marcas, proveedores, clientes, productos y variantes CRUD; color NULL y auditoría sin hashes.
+OK: limpieza de datos temporales de verificación.

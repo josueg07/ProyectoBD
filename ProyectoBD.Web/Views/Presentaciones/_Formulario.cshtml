@@ -1,0 +1,12 @@
+@model ProyectoBD.Web.Models.PresentacionViewModel
+<div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
+<div class="mb-3">
+    <label asp-for="NombrePresentacion" class="form-label"></label>
+    <input asp-for="NombrePresentacion" class="form-control" maxlength="45" autocomplete="off" />
+    <span asp-validation-for="NombrePresentacion" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="UnidadMedida" class="form-label"></label>
+    <input asp-for="UnidadMedida" class="form-control" maxlength="45" autocomplete="off" />
+    <span asp-validation-for="UnidadMedida" class="text-danger"></span>
+</div>

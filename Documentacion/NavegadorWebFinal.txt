@@ -1,0 +1,7 @@
+Verificación visual de navegador real, 18/11/2026.
+Login Gerente; menú Reportes mostró Reportes gerenciales, Consulta de factura y Anulación de factura.
+Formulario con siete reportes y parámetros de fechas/número de factura.
+Generación de previsualización HTML del período 01/01/2026–18/11/2026.
+Totales observados: facturado Q2,175.00; pagado Q244.00; saldo Q1,931.00.
+Botón Generar PDF: descarga real completada en el navegador.
+Al terminar se verificó la pantalla de inicio de sesión en http://127.0.0.1:5190/.

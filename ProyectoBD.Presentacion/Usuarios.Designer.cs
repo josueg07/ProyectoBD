@@ -1,0 +1,204 @@
+namespace ProyectoBD.Presentacion
+{
+    partial class Usuarios
+    {
+        private System.ComponentModel.IContainer components = null;
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && components != null)
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Código generado por el Diseñador de Windows Forms
+        private void InitializeComponent()
+        {
+            label1 = new Label(); groupBox1 = new GroupBox(); label2 = new Label(); textBox1 = new TextBox(); label3 = new Label(); textBox2 = new TextBox(); label4 = new Label(); textBox3 = new TextBox(); label5 = new Label(); textBox4 = new TextBox(); label6 = new Label(); comboBox1 = new ComboBox(); label7 = new Label(); button1 = new Button(); button2 = new Button(); button3 = new Button(); button4 = new Button(); button5 = new Button(); button6 = new Button(); dataGridView1 = new DataGridView();
+            groupBox1.SuspendLayout(); ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            SuspendLayout();
+            label1.Location = new Point(20, 12);
+label1.Name = "label1";
+label1.Size = new Size(960, 50);
+label1.TabIndex = 0;
+label1.Text = "Administración de usuarios";
+label1.AutoSize = false;
+label1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+label1.Font = new Font("Segoe UI", 24F, FontStyle.Bold | FontStyle.Italic);
+groupBox1.Location = new Point(20, 80);
+groupBox1.Name = "groupBox1";
+groupBox1.Size = new Size(960, 220);
+groupBox1.TabIndex = 1;
+groupBox1.Text = "Datos del usuario";
+groupBox1.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+label2.Location = new Point(20, 36);
+label2.Name = "label2";
+label2.Size = new Size(150, 28);
+label2.TabIndex = 2;
+label2.Text = "Nombres";
+label2.AutoSize = false;
+label2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+textBox1.Location = new Point(175, 34);
+textBox1.Name = "textBox1";
+textBox1.Size = new Size(270, 32);
+textBox1.TabIndex = 3;
+textBox1.MaxLength = 45;
+label3.Location = new Point(490, 36);
+label3.Name = "label3";
+label3.Size = new Size(150, 28);
+label3.TabIndex = 4;
+label3.Text = "Apellidos";
+label3.AutoSize = false;
+label3.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+textBox2.Location = new Point(645, 34);
+textBox2.Name = "textBox2";
+textBox2.Size = new Size(270, 32);
+textBox2.TabIndex = 5;
+textBox2.MaxLength = 45;
+label4.Location = new Point(20, 91);
+label4.Name = "label4";
+label4.Size = new Size(150, 28);
+label4.TabIndex = 6;
+label4.Text = "Usuario";
+label4.AutoSize = false;
+label4.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+textBox3.Location = new Point(175, 89);
+textBox3.Name = "textBox3";
+textBox3.Size = new Size(270, 32);
+textBox3.TabIndex = 7;
+textBox3.MaxLength = 45;
+label5.Location = new Point(490, 91);
+label5.Name = "label5";
+label5.Size = new Size(150, 28);
+label5.TabIndex = 8;
+label5.Text = "Contraseña";
+label5.AutoSize = false;
+label5.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+textBox4.Location = new Point(645, 89);
+textBox4.Name = "textBox4";
+textBox4.Size = new Size(270, 32);
+textBox4.TabIndex = 9;
+textBox4.UseSystemPasswordChar = true;
+textBox4.MaxLength = 72;
+label6.Location = new Point(20, 146);
+label6.Name = "label6";
+label6.Size = new Size(150, 28);
+label6.TabIndex = 10;
+label6.Text = "Rol";
+label6.AutoSize = false;
+label6.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+comboBox1.Location = new Point(175, 144);
+comboBox1.Name = "comboBox1";
+comboBox1.Size = new Size(270, 32);
+comboBox1.TabIndex = 11;
+comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+label7.Location = new Point(490, 150);
+label7.Name = "label7";
+label7.Size = new Size(435, 45);
+label7.TabIndex = 12;
+label7.Text = "Para editar datos no es necesario volver a escribir la contraseña.";
+label7.AutoSize = false;
+label7.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+button1.Location = new Point(20, 325);
+button1.Name = "button1";
+button1.Size = new Size(125, 42);
+button1.TabIndex = 13;
+button1.Text = "Nuevo";
+button1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+button1.UseVisualStyleBackColor = true;
+button1.Click += button1_Click;
+button2.Location = new Point(160, 325);
+button2.Name = "button2";
+button2.Size = new Size(125, 42);
+button2.TabIndex = 14;
+button2.Text = "Guardar";
+button2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+button2.UseVisualStyleBackColor = true;
+button2.Click += button2_Click;
+button3.Location = new Point(300, 325);
+button3.Name = "button3";
+button3.Size = new Size(125, 42);
+button3.TabIndex = 15;
+button3.Text = "Editar";
+button3.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+button3.UseVisualStyleBackColor = true;
+button3.Click += button3_Click;
+button4.Location = new Point(440, 325);
+button4.Name = "button4";
+button4.Size = new Size(205, 42);
+button4.TabIndex = 16;
+button4.Text = "Cambiar contraseña";
+button4.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+button4.UseVisualStyleBackColor = true;
+button4.Click += button4_Click;
+button5.Location = new Point(660, 325);
+button5.Name = "button5";
+button5.Size = new Size(125, 42);
+button5.TabIndex = 17;
+button5.Text = "Eliminar";
+button5.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+button5.UseVisualStyleBackColor = true;
+button5.Click += button5_Click;
+button6.Location = new Point(800, 325);
+button6.Name = "button6";
+button6.Size = new Size(125, 42);
+button6.TabIndex = 18;
+button6.Text = "Volver";
+button6.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+button6.UseVisualStyleBackColor = true;
+button6.Click += button6_Click;
+dataGridView1.Location = new Point(20, 390);
+dataGridView1.Name = "dataGridView1";
+dataGridView1.Size = new Size(960, 270);
+dataGridView1.TabIndex = 19;
+dataGridView1.AllowUserToAddRows = false;
+dataGridView1.AllowUserToDeleteRows = false;
+dataGridView1.ReadOnly = true;
+dataGridView1.MultiSelect = false;
+dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+dataGridView1.BackgroundColor = Color.WhiteSmoke;
+dataGridView1.RowHeadersVisible = false;
+dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.DarkCyan;
+            Font = new Font("Segoe UI", 10F);
+            ClientSize = new Size(1000, 680);
+            Name = "Usuarios";
+            Text = "Administración de usuarios";
+            FormBorderStyle = FormBorderStyle.None;
+            ControlBox = false;
+            StartPosition = FormStartPosition.CenterScreen;
+            KeyPreview = true;
+            Controls.Add(label1); Controls.Add(groupBox1); groupBox1.Controls.Add(label2); groupBox1.Controls.Add(textBox1); groupBox1.Controls.Add(label3); groupBox1.Controls.Add(textBox2); groupBox1.Controls.Add(label4); groupBox1.Controls.Add(textBox3); groupBox1.Controls.Add(label5); groupBox1.Controls.Add(textBox4); groupBox1.Controls.Add(label6); groupBox1.Controls.Add(comboBox1); groupBox1.Controls.Add(label7); Controls.Add(button1); Controls.Add(button2); Controls.Add(button3); Controls.Add(button4); Controls.Add(button5); Controls.Add(button6); Controls.Add(dataGridView1);
+            Load += Usuarios_Load;
+            groupBox1.ResumeLayout(false); ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ResumeLayout(false);
+        }
+        #endregion
+
+        private Label label1;
+private GroupBox groupBox1;
+private Label label2;
+private TextBox textBox1;
+private Label label3;
+private TextBox textBox2;
+private Label label4;
+private TextBox textBox3;
+private Label label5;
+private TextBox textBox4;
+private Label label6;
+private ComboBox comboBox1;
+private Label label7;
+private Button button1;
+private Button button2;
+private Button button3;
+private Button button4;
+private Button button5;
+private Button button6;
+private DataGridView dataGridView1;
+    }
+}

@@ -1,0 +1,24 @@
+La carga V1 ya existe. No se duplicaron registros.
+
+IDENTIFICADORES DE LOS DATOS:
+UsuarioDigitador: 1
+UsuarioCajero: 54
+UsuarioGerente: 55
+OrdenCompletaPEPS: 26
+OrdenCompletaStock: 27
+OrdenParcial: 28
+OrdenPendiente: 29
+CotizacionPendiente: 22
+CotizacionConfirmada: 23
+CotizacionCancelada: 24
+CotizacionFacturada: 25
+FacturaPagadaPEPS: 41
+FacturaAbono: 42
+FacturaSinPagos: 43
+VariantePinturaBlanca: 29
+VariantePinturaAzul: 30
+NombreDigitador: admin
+NombreCajero: cajero
+NombreGerente: gerente
+Acceso BCrypt verificado: cajero / Cajero
+Acceso BCrypt verificado: gerente / Gerente
