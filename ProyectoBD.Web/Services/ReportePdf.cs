@@ -42,7 +42,7 @@ public static class ReportePdf
                 if (datos.Filas.Count == 0) { seccion.AddParagraph("No hay resultados para esta consulta."); continue; }
                 if (datos.Titulo == "Auditoría")
                 {
-                    // Los JSON históricos pueden ocupar varias páginas; párrafos permiten
+                    // Los eventos históricos pueden ocupar varias páginas; párrafos permiten
                     // paginarlos sin encerrar todo un evento en una fila indivisible.
                     foreach (var evento in datos.Filas)
                         for (int c = 0; c < datos.Columnas.Count; c++)

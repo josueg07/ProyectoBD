@@ -9,6 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <!-- Shared display formatter; no dependency on the Web runtime. -->
+    <Compile Include="..\ProyectoBD.Web\Helpers\FormatoAuditoria.cs" Link="FormatoVisual\FormatoAuditoria.cs" />
     <ProjectReference Include="..\ProyectoBD.Entidades\ProyectoBD.Entidades.csproj" />
     <ProjectReference Include="..\ProyectoBD.Negocio\ProyectoBD.Negocio.csproj" />
   </ItemGroup>

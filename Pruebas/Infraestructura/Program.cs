@@ -68,6 +68,7 @@ foreach (string bad in new[] { "0.0.0.0/0", "::/0", "10.0.1.0/33", "invalid" })
     catch (InvalidOperationException) { Console.WriteLine($"PASS invalid CIDR rejected: {bad}"); }
 }
 Console.WriteLine("All proxy infrastructure checks passed; no database accessed.");
+PruebasAuditoria.Ejecutar();
 
 sealed class TestDns : IProxyAddressResolver
 {
