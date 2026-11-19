@@ -2,7 +2,7 @@
 
 Revisión e implementación local: **18/11/2026, America/Guatemala**. Rama de trabajo: `fix/dokploy-https-cicd`.
 
-**Estado: preparado y probado localmente; activación productiva PENDIENTE DE AUTORIZACIÓN.** No se cambió Dokploy, no se publicó una imagen productiva y no se modificó main durante la preparación. No se tocó SQL, contraseñas, volúmenes existentes ni lógica de ventas. No afirmar que el flujo productivo nuevo ya fue probado.
+**Estado: CI/CD productivo validado y corrección de auditoría publicada automáticamente.** Los resultados de preparación se conservan abajo y los resultados reales están en las secciones 13 y 14. No se tocó SQL, contraseñas, volúmenes existentes ni lógica de ventas. La revisión visual autenticada de la auditoría nueva y la interacción manual de WinForms quedan NO VERIFICADO hasta completar el acceso manual.
 
 ## 1. Problema original y causa comprobada
 
@@ -61,7 +61,9 @@ Desde el contenedor Web, `getent ahostsv4 dokploy-traefik` resolvió **10.0.1.7*
 - `.gitignore`: excluye cache Python.
 - Este documento.
 
-`deploy/docker/compose.yaml`, SQL, Datos, Negocio, Entidades, WinForms, Controllers y funcionalidades de negocio se conservan. Program.cs mantiene su codificación original; no se convirtió todo el archivo.
+Para la prueba visible de activación se añadió ` - Redes II` al pie existente de `ProyectoBD.Web/Views/Shared/_Layout.cshtml`, sin cambiar flujos.
+
+`deploy/docker/compose.yaml`, SQL, Datos, Negocio, Entidades, Controllers y funcionalidades de negocio se conservan. La corrección visual adicional de WinForms solicitada posteriormente se describe en la sección 14; no cambia sus procesos. Program.cs mantiene su codificación original; no se convirtió todo el archivo.
 
 ## 4. Solución permanente de HTTPS
 
@@ -70,8 +72,8 @@ La solución consta de **dos partes inseparables**: retirar el parche antiguo de
 Compose define:
 
 ```yaml
-TRUSTED_PROXY_HOSTS: ${TRUSTED_PROXY_HOSTS:-dokploy-traefik}
-TRUSTED_PROXY_NETWORKS: ${TRUSTED_PROXY_NETWORKS:-10.0.1.0/24}
+TRUSTED_PROXY_HOSTS: ${DOKPLOY_PROXY_HOSTS:-dokploy-traefik}
+TRUSTED_PROXY_NETWORKS: ${DOKPLOY_PROXY_NETWORKS:-10.0.1.0/24}
 ASPNETCORE_HTTPS_PORT: "443"
 ```
 
@@ -85,9 +87,9 @@ Compatibilidad local/Minikube: cuando HOSTS no está configurado se conserva el 
 
 **Límite de seguridad:** se confía en Docker DNS y en el control administrativo del daemon/red. Un atacante con acceso al socket Docker o permiso para reemplazar el contenedor/alias Traefik ya controla infraestructura crítica. No montar el socket en Web, no permitir contenedores de terceros sin revisar y no duplicar el alias dokploy-traefik. La caché puede retener una IP anterior hasta 30 s; la protección no equivale a mTLS entre proxy y Web.
 
-Traefik debe sobrescribir/normalizar los encabezados de clientes y no tener `forwardedHeaders.insecure=true`. Las pruebas externas actuales con X-Forwarded-Proto=http y host falsificado conservaron HTTPS. La inspección completa del archivo estático efectivo de Traefik es **NO VERIFICADO**; comprobarla antes de aceptar el despliegue nuevo. No confiar en encabezados externos mediante una regla global de Traefik.
+Traefik debe sobrescribir/normalizar los encabezados de clientes y no tener `forwardedHeaders.insecure=true`. Las pruebas externas actuales con X-Forwarded-Proto=http y host falsificado conservaron HTTPS. El archivo estático de Traefik se inspeccionó durante la activación; ver sección 13. No se modificó ni se abrió su almacenamiento de certificados. No confiar en encabezados externos mediante una regla global de Traefik.
 
-Si cambia la infraestructura: consultar nombre/IPAM de la red y resolución desde Web; actualizar HOSTS y el CIDR restringido en configuración versionada/Environment; revisar miembros; desplegar sólo Web y ejecutar las pruebas. No actualizar una /32 después de cada recreación. **Eliminar o cambiar el valor temporal 10.0.1.7/32 a 10.0.1.0/24 en Environment una sola vez**: de lo contrario ese valor prevalece sobre el default y restringirá las nuevas IP legítimas.
+Si cambia la infraestructura: consultar nombre/IPAM de la red y resolución desde Web; actualizar HOSTS y el CIDR restringido en configuración versionada/Environment; revisar miembros; desplegar sólo Web y ejecutar las pruebas. No actualizar una /32 después de cada recreación. **Parámetros de la plantilla:** DOKPLOY_PROXY_HOSTS y DOKPLOY_PROXY_NETWORKS, opcionales con defaults versionados dokploy-traefik y 10.0.1.0/24. Las variables que recibe .NET siguen llamándose TRUSTED_PROXY_HOSTS y TRUSTED_PROXY_NETWORKS. Separar ambos nombres evita que la antigua /32 guardada en Dokploy prevalezca accidentalmente; se puede retirar ese valor obsoleto sin afectar la plantilla nueva. Si cambia la red, ajustar DOKPLOY_PROXY_NETWORKS al CIDR real después de revisar DNS y miembros.
 
 ## 5. CI/CD sin la carrera del push inicial
 
@@ -111,7 +113,7 @@ El script crea un árbol completo de la revisión construida, cambia únicamente
 
 La imagen productiva se obtiene por **digest**, no por el valor mutable de latest. Si otro push cambia latest antes de que Dokploy termine, el Compose de release sigue solicitando el artefacto exacto. El snapshot de SQL/script también corresponde a ese código, aunque las actualizaciones normales no ejecutarán sql-init.
 
-La integración GitHub App instalada debe recibir eventos push de la rama de release. Esto se comprobará con la primera release autorizada. Un push con GITHUB_TOKEN no inicia otros workflows de Actions; aquí el receptor es **Dokploy/GitHub App**, no un segundo workflow. Si la política de la organización impide el push o la entrega a la App, no dar el flujo por aceptado: revisar permisos/entregas y usar una App de CI autorizada o API postpublicación bajo aprobación, sin añadir un deploy temprano sobre main.
+La integración GitHub App instalada recibió el push de la rama de release y produjo el despliegue automático en la validación autorizada de la sección 13. Un push con GITHUB_TOKEN no inicia otros workflows de Actions; aquí el receptor es **Dokploy/GitHub App**, no un segundo workflow. Si la política de la organización impide el push o la entrega a la App, no dar el flujo por aceptado: revisar permisos/entregas y usar una App de CI autorizada o API postpublicación bajo aprobación, sin añadir un deploy temprano sobre main.
 
 Secrets existentes: **REGISTRY_USERNAME**, **REGISTRY_PASSWORD**, únicamente para Docker Hub. El usuario necesita permisos de escritura sobre josueg07/proyectobd-web. GITHUB_TOKEN se emite por ejecución; `contents: write` se concede sólo al job release. La variable no secreta **DOKPLOY_CD_ENABLED=true** habilita release; sin ella sólo se construye/publica. No se configuró ni habilitó durante esta preparación.
 
@@ -122,7 +124,7 @@ No activar Autodeploy todavía sobre main. No presionar Deploy antes de preparar
 1. Revisar/mergear la rama fix a main por el mecanismo habitual. Con DOKPLOY_CD_ENABLED ausente/false, se ejecutan pruebas y publicación, sin actualización productiva automática.
 2. Registrar imagen/digest actual, ID/estado de SQL y nombres de volúmenes. El respaldo `Proyecto_BD_pre_despliegue.bak`, fuera del contenedor y con copia local, fue confirmado por el propietario; no se abrió, copió ni restauró aquí.
 3. En Patches, **deshabilitar** el update de compose.dokploy.yaml, conservándolo como referencia de reversión. Es configuración persistente de Dokploy, no editar su copia interna. No deshabilitar parches de otros servicios.
-4. En Environment conservar MSSQL_SA_PASSWORD y todos los valores existentes. Cambiar únicamente TRUSTED_PROXY_NETWORKS a `10.0.1.0/24` y establecer TRUSTED_PROXY_HOSTS=`dokploy-traefik`. El propietario puede editarlo para no mostrar su contraseña SQL. No sobrescribir todo Environment con un ejemplo.
+4. En Environment conservar MSSQL_SA_PASSWORD y todos los valores existentes. La plantilla usa los defaults verificados; sólo si cambia la infraestructura establecer DOKPLOY_PROXY_NETWORKS y DOKPLOY_PROXY_HOSTS con sus valores reales. Los antiguos TRUSTED_PROXY_* en Environment ya no son parámetros de interpolación del Compose nuevo. No sobrescribir todo Environment ni mostrar contraseñas.
 5. En Advanced → Run Command usar exactamente este comando, **sin el prefijo docker**, porque Dokploy lo agrega:
 
 ```text
@@ -179,7 +181,7 @@ docker inspect proyectobd-proyectobd-jsdy5d-sqlserver-1 --format '{{json .HostCo
 
 El ID SQL debe permanecer igual durante una actualización sólo Web; SQL healthy, init Exited 0, mismos volúmenes SQL/DP, sin puerto host 1433. Inspeccionar sólo las tres variables no secretas indicadas, no todo Env. Acceder con credenciales personalmente y consultar un registro existente para verificar SQL, sin transacciones de prueba innecesarias.
 
-Prueba remota directa de peer no confiable y recreación productiva controlada: **PENDIENTES**. Las equivalentes en contenedores locales aislados sí se ejecutaron. Revisar también el archivo estático de Traefik para confirmar que no confía indiscriminadamente en encabezados recibidos de Internet.
+La prueba remota directa de un peer no confiable devolvió 400 con encabezado HTTPS falsificado; la recreación Web ocurrió durante el despliegue automático. Los resultados de activación se registran en la sección 13. Las pruebas aisladas también se ejecutaron. Revisar también el archivo estático de Traefik para confirmar que no confía indiscriminadamente en encabezados recibidos de Internet.
 
 ## 10. Secuencia corta para el video
 
@@ -201,7 +203,9 @@ git rev-parse HEAD
 
 Grabar después de completar el bootstrap y una validación autorizada, no durante la primera configuración de secretos o variables.
 
-## 11. Pruebas realmente ejecutadas
+## 11. Pruebas de preparación realmente ejecutadas
+
+Esta tabla conserva el estado previo a la autorización; los resultados productivos posteriores están en la sección 13.
 
 | Prueba | Resultado |
 |---|---|
@@ -229,6 +233,55 @@ Referencias primarias consultadas:
 - [Comando Compose de Dokploy v0.31.4](https://github.com/Dokploy/dokploy/blob/v0.31.4/packages/server/src/utils/builders/compose.ts).
 - [ASP.NET Core y proxies](https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer?view=aspnetcore-8.0).
 
-Falta aprobar y ejecutar: integración de la rama a main; retiro del parche antiguo; ajuste de variables no secretas y comando sólo Web; rama de release y Autodeploy; primera actualización/validación pública; comprobación del digest ejecutado, SQL/mounts y Traefik efectivo. No se necesita un token nuevo de Dokploy para el diseño elegido. Si GitHub requiere iniciar sesión o modificar Secrets, debe hacerlo el propietario, sin compartirlos en el chat.
+La integración y activación se autorizaron y ejecutaron; ver la sección 13 para evidencia real y las comprobaciones restantes. La guía de la sección 6 sirve para reproducir la configuración, no para repetirla después de cada push. No se necesita un token nuevo de Dokploy para el diseño elegido. Si GitHub requiere iniciar sesión o modificar Secrets, debe hacerlo el propietario, sin compartirlos en el chat.
 
 **No declarar cerrado el criterio de aceptación hasta que el cambio visible llegue automáticamente a la URL pública y HTTPS, SQL y los volúmenes se verifiquen después.**
+
+## 13. Registro de activación autorizada (18/11/2026 Guatemala)
+
+El propietario autorizó explícitamente integrar main, deshabilitar el parche antiguo, ajustar configuración no secreta, actualizar sólo Web y activar/validar CI/CD. Se integró por fast-forward, conservando el historial.
+
+Referencias anteriores al primer despliegue:
+
+- Contenedor Web: `982eaab22579c30c69f5e756fc409f20903e9f75e4f947b017ff9037cd85d080`.
+- Config digest Web: `sha256:ef0055fb31157dd930bf40037981d9293b9ab352741be4ebb5f4f0be04306d8f`.
+- Imagen anterior identificada por coincidencia del config digest en el registry: `josueg07/proyectobd-web@sha256:a5010aaf368f68e6bc77bfc1786e8b4b3a469f29f4045470cfe933156a1faa03`, tag fuente f31acb7a641cc6d569cc11274513459100c16ee8.
+- Contenedor SQL: `b51d255e6c6e97247f102cf38807e94a9b7701241f49efa82da0b81b40c7f826`.
+- Imagen SQL: `sha256:548ecf4a83632020d95dfc744bac431f91e31458c2a785b61275941abae7c2bf`.
+- Mounts: `proyectobd-proyectobd-jsdy5d_dp-keys:/var/dpkeys` y `proyectobd-proyectobd-jsdy5d_sql-data:/var/opt/mssql`.
+
+IDs/mounts recibidos de la consulta ejecutada por el propietario. El propietario guardó las variables TRUSTED_PROXY_NETWORKS y TRUSTED_PROXY_HOSTS sin mostrar la contraseña SQL. En UI se deshabilitó el parche, se guardó el comando sólo Web, se seleccionó deploy/production y se habilitó Autodeploy. En GitHub se creó la variable no secreta DOKPLOY_CD_ENABLED=true.
+
+Bootstrap [44463360433](https://github.com/josueg07/ProyectoBD/actions/runs/44463360433) terminó success en verify/publish/release con prepare_only=true. Creó la primera release `84d9066260868780d18a1b0ce2891bb7eb8531b4` para fuente c6232d2; todavía no era prueba de actualización productiva.
+
+Cambio visible enviado por push: `ffbc46b72a26224c6f37e971481da18416e24b8c`. [Workflow de validación completa](https://github.com/josueg07/ProyectoBD/actions/runs/44463842668). Antes del despliegue, el Login público mostraba el pie sin Redes II.
+
+Se inspeccionó `/etc/dokploy/traefik/traefik.yml` desde su editor, sin modificar: docker provider con network=dokploy-network, exposedByDefault=false, entrypoints 80/443 y ACME HTTP challenge/Let's Encrypt. No contiene forwardedHeaders.insecure ni una lista de proxies externos confiables; las pruebas externas también rechazaron el cambio de esquema por encabezados falsificados. `api.insecure=true` corresponde al API/dashboard de Traefik y es distinto de forwardedHeaders.insecure; su exposición administrativa completa queda fuera de esta corrección y no fue auditada aquí. No se abrió acme.json ni se leyeron claves privadas.
+
+**Primera actualización automática completa: aprobada.** El workflow 44463842668 terminó success en verify/publish/release. El commit de release fue `71d5a1b43a59185d5a36f0c78da89e4a329b35c5`; imagen ejecutada `josueg07/proyectobd-web@sha256:954de4dd46ba088f35e78e3dba6cd02b715eea8716eb20d204eb5595136c3561`. `/deployment.json` coincidió con ffbc46b y el Login público pasó de mostrar el pie anterior a mostrar `Sistema de Ventas e Inventario - Redes II`. No se presionó Deploy manualmente.
+
+La consulta posterior del propietario mostró Web healthy con nuevo ID `c75f64f4fd59df070029f0a4443a67c50a224250ab505165ba08edd07585a9b1`, mismo volumen dp-keys; SQL healthy con **exactamente el mismo ID b51d255e… y el mismo volumen sql-data**. El propietario confirmó login y consulta de registros correctos.
+
+Desde la terminal Linux del contenedor se ejecutó únicamente printenv de las tres variables no secretas y curl de consulta contra loopback con X-Forwarded-Proto:https falsificado. Resultado: **UNTRUSTED_HTTP=400**. Se detectó que el runtime aún recibía la antigua /32, pese a la edición reportada de Environment. No se leyó todo Environment para investigar precedencias, por lo que el origen exacto de ese valor residual es NO VERIFICADO.
+
+Para eliminar esa dependencia, el commit **84c492a41f7728a8fa36f498d6f4ee6188d9baf3** separó parámetros de plantilla `DOKPLOY_PROXY_*` de nombres runtime `TRUSTED_PROXY_*`. Se comprobó localmente que incluso con TRUSTED_PROXY_NETWORKS=10.0.1.7/32 residual, Compose genera el CIDR verificado 10.0.1.0/24. [Workflow 44464651781](https://github.com/josueg07/ProyectoBD/actions/runs/44464651781) terminó success y la revisión pública coincidió con 84c492a, manteniendo HTTPS, Login, health y rechazo de encabezados externos falsificados. Imagen de esa release: `josueg07/proyectobd-web@sha256:65d2c046651d00e16b8059118b52c45a5bfb95cb274ba06c4d8e87c093fef95f`.
+
+## 14. Corrección visual adicional de auditoría solicitada durante la validación
+
+El propietario confirmó que la aplicación funcionaba y pidió corregir Datos anteriores/Datos nuevos, mostrados como JSON. Se revisaron todas las referencias de esas columnas en Web, PDF y escritorio. No se cambió su almacenamiento, consultas, permisos, procesos de facturación ni SQL.
+
+- `ProyectoBD.Web/Helpers/FormatoAuditoria.cs`: convierte objetos y listas JSON en etiquetas/valores con registros numerados y sangría; interpreta lotes anidados, booleanos y nulos. Los importes conservan su precisión original. Texto histórico no JSON o JSON malformado se conserva tal cual para no perder información.
+- `ProyectoBD.Web/Helpers/ReporteWeb.cs`: aplica el formato sólo a las dos columnas auditadas; los DataTable originales no se modifican. La vista existente muestra texto escapado por Razor, sin Html.Raw. Web, consulta/anulación, previsualización y PDF comparten este adaptador.
+- `ProyectoBD.Presentacion/Reportes.cs`: aplica el mismo formato mediante CellFormatting; columnas multilínea y doble clic para abrir lectura completa con desplazamiento y botón Volver. No se altera DataSource ni el JSON guardado.
+- `ProyectoBD.Presentacion/ProyectoBD.Presentacion.csproj`: enlaza el archivo del formateador como código de presentación; **no agrega referencia de WinForms al proyecto Web ni otra capa de negocio**.
+- `Pruebas/Infraestructura/PruebasAuditoria.cs`: nueve comprobaciones aprobadas de lectura, precisión, nulos/vacíos, JSON anidado, fallback histórico, invariancia de los datos y generación del PDF real. Se mantienen las quince comprobaciones de proxy.
+
+Compilación completa tras la corrección: **0 errores y 0 advertencias**. Se generó un PDF sintético de prueba de dos páginas y se renderizaron/revisaron ambas; no hay JSON crudo ni texto cortado. No se creó ninguna factura ni se anuló ningún documento para probarlo. La interacción manual de la ventana WinForms no se probó; se compiló la solución completa. Commit de la corrección: `e81eef35771636a15894890c1a1badeafa2385b9`; [workflow 44465311005](https://github.com/josueg07/ProyectoBD/actions/runs/44465311005).
+
+**Resultado productivo final de esa corrección:** verify, publish y release terminaron success. La release `ec08a3a` fijó la imagen `josueg07/proyectobd-web@sha256:d5fbffadd7c2268521ff49a48c3fb699db61241ebb1517ba13b280e6323bd7aa`. La revisión servida por /deployment.json coincide con e81eef3; el verificador público pasó HTTPS, Login, Healthy y encabezados falsificados. Las 24 comprobaciones .NET (15 de proxy y 9 de auditoría) y las 3 pruebas Python pasaron también en CI.
+
+En la terminal del contenedor final `a5d251d47779` se verificaron sólo tres variables no secretas: **dokploy-traefik, 10.0.1.0/24 y 443**. Se repitió la petición directa de loopback con esquema falsificado: **400**. Esta vez el runtime ya no depende de la /32 residual. SQL sigue healthy, con identificador corto **b51d255e6c6e**, coincidente con el registro anterior, y sql-init sigue Exited 0 con su antigüedad previa. Las actualizaciones automáticas sólo recrearon Web.
+
+Se solicitó acceso manual como Gerente en el navegador integrado para revisar la auditoría de una factura real sin manejar contraseñas. Esa inspección autenticada nueva queda **NO VERIFICADO** mientras no finalice el acceso manual. La generación y el contenido legible del reporte se comprobaron con DataSet/PDF sintéticos y sin acceso a SQL; no se confunden con una prueba manual de todos los datos históricos.
+
+La actualización final de este documento es sólo registro de resultados, con `[skip ci]` para evitar otra recreación Web por documentación. La revisión de aplicación desplegada es e81eef3; los siguientes cambios de código enviados normalmente a main vuelven a ejecutar todo el flujo automáticamente.
