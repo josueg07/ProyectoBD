@@ -29,7 +29,7 @@ services:
     networks: [datos]
     restart: "no"
   web:
-    image: josueg07/proyectobd-web@sha256:d5fbffadd7c2268521ff49a48c3fb699db61241ebb1517ba13b280e6323bd7aa
+    image: josueg07/proyectobd-web@sha256:830cfcb0882fca57f67e694ed7fed042d8a29d5019485f3143ad0cf235e648cd
     depends_on:
       sql-init: {condition: service_completed_successfully}
     expose: ["8080"]
