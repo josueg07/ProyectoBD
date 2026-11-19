@@ -40,8 +40,10 @@ services:
       PROYECTOBD_CONNECTION_STRING: 'Server=sqlserver,1433;Database=Proyecto_BD;User Id=sa;Password=${MSSQL_SA_PASSWORD};Encrypt=True;TrustServerCertificate=True;'
       DATA_PROTECTION_KEYS_PATH: /var/dpkeys
       # Exact DNS-resolved proxy IPs are trusted, not the entire Docker subnet.
-      TRUSTED_PROXY_HOSTS: ${TRUSTED_PROXY_HOSTS:-dokploy-traefik}
-      TRUSTED_PROXY_NETWORKS: ${TRUSTED_PROXY_NETWORKS:-10.0.1.0/24}
+      # Separate Compose inputs from runtime names: an obsolete /32 in
+      # Dokploy's TRUSTED_PROXY_NETWORKS must not override this DNS policy.
+      TRUSTED_PROXY_HOSTS: ${DOKPLOY_PROXY_HOSTS:-dokploy-traefik}
+      TRUSTED_PROXY_NETWORKS: ${DOKPLOY_PROXY_NETWORKS:-10.0.1.0/24}
     volumes:
       - dp-keys:/var/dpkeys
     networks: [datos, frente]
