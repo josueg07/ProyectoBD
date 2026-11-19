@@ -5,6 +5,7 @@ using System.Data;
 using System.Windows.Forms;
 using ProyectoBD.Entidades;
 using ProyectoBD.Negocio;
+using ProyectoBD.FormatoVisual;
 
 namespace ProyectoBD.Presentacion
 {
@@ -25,6 +26,8 @@ namespace ProyectoBD.Presentacion
             dataGridView1.Top = groupBox1.Top;
             dataGridView1.Height = button1.Top - dataGridView1.Top - 25;
             dataGridView1.DataSource = datos;
+            if (datos.Columns.Contains("DatosAnteriores") || datos.Columns.Contains("DatosNuevos"))
+                FormatearTabla(dataGridView1);
         }
         public Reportes(UsuarioSesion sesion) : this()
         {
@@ -93,8 +96,21 @@ namespace ProyectoBD.Presentacion
         }
         internal static void FormatearTabla(DataGridView tabla)
         {
+            tabla.CellFormatting -= FormatearAuditoria;
+            tabla.CellFormatting += FormatearAuditoria;
+            tabla.CellDoubleClick -= VerAuditoria;
+            tabla.CellDoubleClick += VerAuditoria;
             foreach (DataGridViewColumn columna in tabla.Columns)
             {
+                if (columna.Name is "DatosAnteriores" or "DatosNuevos")
+                {
+                    columna.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+                    columna.DefaultCellStyle.Alignment = DataGridViewContentAlignment.TopLeft;
+                    columna.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                    columna.Width = 360;
+                    columna.ToolTipText = "Doble clic en una celda para leer el detalle completo.";
+                    tabla.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
+                }
                 switch (columna.Name)
                 {
                     case "PrecioUnitario": columna.HeaderText = "Precio unitario"; break;
@@ -119,6 +135,36 @@ namespace ProyectoBD.Presentacion
                 if (columna.ValueType == typeof(DateTime))
                     columna.DefaultCellStyle.Format = "dd/MM/yyyy HH:mm";
             }
+        }
+        private static void FormatearAuditoria(object? sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (sender is DataGridView tabla && e.ColumnIndex >= 0 &&
+                tabla.Columns[e.ColumnIndex].Name is "DatosAnteriores" or "DatosNuevos")
+            {
+                e.Value = FormatoAuditoria.Mostrar(e.Value);
+                e.FormattingApplied = true;
+            }
+        }
+        private static void VerAuditoria(object? sender, DataGridViewCellEventArgs e)
+        {
+            if (sender is not DataGridView tabla || e.RowIndex < 0 || e.ColumnIndex < 0 ||
+                tabla.Columns[e.ColumnIndex].Name is not ("DatosAnteriores" or "DatosNuevos")) return;
+            using var ventana = new Form
+            {
+                Text = tabla.Columns[e.ColumnIndex].HeaderText, Width = 800, Height = 550,
+                StartPosition = FormStartPosition.CenterParent, FormBorderStyle = FormBorderStyle.FixedDialog,
+                ControlBox = false
+            };
+            var textBox1 = new TextBox
+            {
+                Multiline = true, ReadOnly = true, WordWrap = true, ScrollBars = ScrollBars.Vertical,
+                Dock = DockStyle.Fill, Text = FormatoAuditoria.Mostrar(tabla.Rows[e.RowIndex].Cells[e.ColumnIndex].Value)
+            };
+            var button1 = new Button { Text = "Volver", Dock = DockStyle.Bottom, Height = 38, DialogResult = DialogResult.Cancel };
+            ventana.Controls.Add(textBox1);
+            ventana.Controls.Add(button1);
+            ventana.CancelButton = button1;
+            ventana.ShowDialog(tabla.FindForm());
         }
         private void button1_Click(object? sender, EventArgs e)
         {

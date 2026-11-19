@@ -2,6 +2,7 @@ using System.Data;
 using System.Globalization;
 using ProyectoBD.Negocio;
 using ProyectoBD.Web.Models;
+using ProyectoBD.FormatoVisual;
 
 namespace ProyectoBD.Web.Helpers;
 
@@ -63,7 +64,10 @@ public static class ReporteWeb
     private static TablaReporteViewModel Tabla(string titulo, DataTable datos)
     {
         var tabla = new TablaReporteViewModel { Titulo = titulo, Columnas = datos.Columns.Cast<DataColumn>().Select(c => Etiqueta(c.ColumnName)).ToList() };
-        foreach (DataRow fila in datos.Rows) tabla.Filas.Add(fila.ItemArray.Select(v => Valor(v!)).ToList());
+        foreach (DataRow fila in datos.Rows)
+            tabla.Filas.Add(datos.Columns.Cast<DataColumn>().Select(c =>
+                c.ColumnName is "DatosAnteriores" or "DatosNuevos"
+                    ? FormatoAuditoria.Mostrar(fila[c]) : Valor(fila[c])).ToList());
         var sumas = new List<string>();
         foreach (DataColumn col in datos.Columns)
         {
