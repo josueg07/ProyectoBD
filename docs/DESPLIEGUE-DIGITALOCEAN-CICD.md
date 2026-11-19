@@ -2,7 +2,7 @@
 
 Revisión e implementación local: **18/11/2026, America/Guatemala**. Rama de trabajo: `fix/dokploy-https-cicd`.
 
-**Estado: CI/CD productivo validado y corrección de auditoría publicada automáticamente.** Los resultados de preparación se conservan abajo y los resultados reales están en las secciones 13 y 14. No se tocó SQL, contraseñas, volúmenes existentes ni lógica de ventas. La revisión visual autenticada de la auditoría nueva y la interacción manual de WinForms quedan NO VERIFICADO hasta completar el acceso manual.
+**Estado: CI/CD productivo validado y auditoría comprobada con sesión real de Gerente y PDF de producción.** Los resultados de preparación se conservan abajo y los resultados reales están en las secciones 13 y 14. No se tocó SQL, contraseñas, volúmenes existentes ni lógica de ventas. La interacción manual de WinForms permanece NO VERIFICADO; su compilación completa sí se verificó.
 
 ## 1. Problema original y causa comprobada
 
@@ -282,6 +282,8 @@ Compilación completa tras la corrección: **0 errores y 0 advertencias**. Se ge
 
 En la terminal del contenedor final `a5d251d47779` se verificaron sólo tres variables no secretas: **dokploy-traefik, 10.0.1.0/24 y 443**. Se repitió la petición directa de loopback con esquema falsificado: **400**. Esta vez el runtime ya no depende de la /32 residual. SQL sigue healthy, con identificador corto **b51d255e6c6e**, coincidente con el registro anterior, y sql-init sigue Exited 0 con su antigüedad previa. Las actualizaciones automáticas sólo recrearon Web.
 
-Se solicitó acceso manual como Gerente en el navegador integrado para revisar la auditoría de una factura real sin manejar contraseñas. Esa inspección autenticada nueva queda **NO VERIFICADO** mientras no finalice el acceso manual. La generación y el contenido legible del reporte se comprobaron con DataSet/PDF sintéticos y sin acceso a SQL; no se confunden con una prueba manual de todos los datos históricos.
+**Revisión autenticada completada el 18/11/2026 (Guatemala):** el propietario inició sesión personalmente como Gerente en el navegador integrado. Se consultó la factura existente N.º 1, que ya estaba anulada. Se comprobaron sus tres eventos FACTURA, PAGO y ANULAR FACTURA: Datos anteriores y Datos nuevos contienen etiquetas y valores, sin objetos/listas JSON crudos, con estados Pagada/Anulada y lotes históricos legibles. Los valores vacíos se identifican como Sin datos registrados. No se pulsaron acciones de anulación ni se modificó ningún registro.
+
+Desde esa misma consulta se descargó el PDF real generado por producción. Se renderizaron y revisaron sus **tres páginas**: encabezado/detalle, pagos y auditoría; los datos anteriores/nuevos y los lotes aparecen como texto legible, sin JSON crudo ni contenido cortado. El archivo descargado y las capturas se conservaron sólo localmente, fuera de Git. Esto complementa las pruebas sintéticas y confirma el caso real revisado; no constituye una revisión manual de todas las facturas históricas. La Web quedó abierta en la consulta para el propietario.
 
 La actualización final de este documento es sólo registro de resultados, con `[skip ci]` para evitar otra recreación Web por documentación. La revisión de aplicación desplegada es e81eef3; los siguientes cambios de código enviados normalmente a main vuelven a ejecutar todo el flujo automáticamente.
