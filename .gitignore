@@ -8,3 +8,5 @@
 **/secret.local.yaml
 deploy/docker/secrets/
 tmp/
+**/__pycache__/
+**/*.pyc

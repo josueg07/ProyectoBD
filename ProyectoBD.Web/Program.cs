@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using ProyectoBD.Negocio;
+using ProyectoBD.Web.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -48,18 +49,13 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     });
 
 builder.Services.AddAuthorization();
-builder.Services.Configure<Microsoft.AspNetCore.Builder.ForwardedHeadersOptions>(options =>
-{
-    options.ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedFor
-        | Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedProto;
-    foreach (string red in (Environment.GetEnvironmentVariable("TRUSTED_PROXY_NETWORKS") ?? "").Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
-    {
-        string[] partes = red.Split('/');
-        options.KnownNetworks.Add(new Microsoft.AspNetCore.HttpOverrides.IPNetwork(System.Net.IPAddress.Parse(partes[0]), int.Parse(partes[1])));
-    }
-});
+builder.Services.AddSingleton<IProxyAddressResolver, ProxyAddressResolver>();
+builder.Services.AddSingleton(TimeProvider.System);
 
 var app = builder.Build();
+
+// Restore the original HTTPS scheme before HSTS, redirects and cookies.
+app.UseMiddleware<TrustedProxyForwardingMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -69,8 +65,8 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseForwardedHeaders();
-app.UseHttpsRedirection();
+// Internal Docker/Kubernetes probes use HTTP; public TLS is terminated by the proxy.
+app.UseWhen(context => context.Request.Path != "/health", branch => branch.UseHttpsRedirection());
 app.UseStaticFiles();
 
 app.UseRouting();

@@ -10,6 +10,9 @@ COPY ProyectoBD.Negocio/ ProyectoBD.Negocio/
 COPY ProyectoBD.Datos/ ProyectoBD.Datos/
 COPY ProyectoBD.Entidades/ ProyectoBD.Entidades/
 RUN dotnet publish ProyectoBD.Web/ProyectoBD.Web.csproj -c Release --no-restore -o /out /p:UseAppHost=false
+ARG SOURCE_REVISION=local
+# A public, non-sensitive marker lets CI prove which image is actually serving.
+RUN printf '{"revision":"%s"}\n' "$SOURCE_REVISION" > /out/wwwroot/deployment.json
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 USER root

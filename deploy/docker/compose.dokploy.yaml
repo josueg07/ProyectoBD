@@ -36,9 +36,12 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Production
       ASPNETCORE_URLS: http://+:8080
+      ASPNETCORE_HTTPS_PORT: "443"
       PROYECTOBD_CONNECTION_STRING: 'Server=sqlserver,1433;Database=Proyecto_BD;User Id=sa;Password=${MSSQL_SA_PASSWORD};Encrypt=True;TrustServerCertificate=True;'
       DATA_PROTECTION_KEYS_PATH: /var/dpkeys
-      TRUSTED_PROXY_NETWORKS: ${TRUSTED_PROXY_NETWORKS}
+      # Exact DNS-resolved proxy IPs are trusted, not the entire Docker subnet.
+      TRUSTED_PROXY_HOSTS: ${TRUSTED_PROXY_HOSTS:-dokploy-traefik}
+      TRUSTED_PROXY_NETWORKS: ${TRUSTED_PROXY_NETWORKS:-10.0.1.0/24}
     volumes:
       - dp-keys:/var/dpkeys
     networks: [datos, frente]
