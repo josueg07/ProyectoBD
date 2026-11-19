@@ -29,7 +29,7 @@ services:
     networks: [datos]
     restart: "no"
   web:
-    image: josueg07/proyectobd-web@sha256:954de4dd46ba088f35e78e3dba6cd02b715eea8716eb20d204eb5595136c3561
+    image: josueg07/proyectobd-web@sha256:65d2c046651d00e16b8059118b52c45a5bfb95cb274ba06c4d8e87c093fef95f
     depends_on:
       sql-init: {condition: service_completed_successfully}
     expose: ["8080"]
@@ -40,8 +40,10 @@ services:
       PROYECTOBD_CONNECTION_STRING: 'Server=sqlserver,1433;Database=Proyecto_BD;User Id=sa;Password=${MSSQL_SA_PASSWORD};Encrypt=True;TrustServerCertificate=True;'
       DATA_PROTECTION_KEYS_PATH: /var/dpkeys
       # Exact DNS-resolved proxy IPs are trusted, not the entire Docker subnet.
-      TRUSTED_PROXY_HOSTS: ${TRUSTED_PROXY_HOSTS:-dokploy-traefik}
-      TRUSTED_PROXY_NETWORKS: ${TRUSTED_PROXY_NETWORKS:-10.0.1.0/24}
+      # Separate Compose inputs from runtime names: an obsolete /32 in
+      # Dokploy's TRUSTED_PROXY_NETWORKS must not override this DNS policy.
+      TRUSTED_PROXY_HOSTS: ${DOKPLOY_PROXY_HOSTS:-dokploy-traefik}
+      TRUSTED_PROXY_NETWORKS: ${DOKPLOY_PROXY_NETWORKS:-10.0.1.0/24}
     volumes:
       - dp-keys:/var/dpkeys
     networks: [datos, frente]
